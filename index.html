@@ -12,9 +12,7 @@
             --text-primary: #1a1a1a;
             --text-secondary: #555555;
             --accent-blue: #4A90E2;
-            --accent-purple: #9B59B6;
             --gradient-primary: linear-gradient(135deg, #20B2AA, #4A90E2);
-            --academy-gold: #FFD700;
         }
 
         * {
@@ -37,7 +35,7 @@
             padding: 0 20px;
         }
 
-        /* Navbar Enhancement */
+        /* Navigation */
         .navbar {
             position: fixed;
             top: 0;
@@ -60,6 +58,9 @@
             align-items: center;
             gap: 10px;
             text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
         }
 
         .nav-menu {
@@ -70,16 +71,13 @@
         }
 
         .nav-menu a {
-            color: #1a1a1a;
+            color: var(--text-primary);
             text-decoration: none;
-            transition: color 0.3s;
             font-weight: 600;
-            font-size: 0.95rem;
+            transition: color 0.3s;
         }
 
-        .nav-menu a:hover {
-            color: var(--primary-teal);
-        }
+        .nav-menu a:hover { color: var(--primary-teal); }
 
         .nav-cta {
             padding: 8px 20px;
@@ -88,20 +86,19 @@
             border-radius: 25px;
         }
 
-        /* Hero Section */
+        /* Hero */
         .hero {
-            min-height: 90vh;
+            min-height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 120px 20px 80px;
+            padding: 120px 20px 60px;
             background: radial-gradient(circle at top, rgba(32, 178, 170, 0.1), transparent 70%);
         }
 
         .hero h1 {
             font-size: 3.5rem;
-            font-weight: 800;
             margin-bottom: 20px;
             background: var(--gradient-primary);
             -webkit-background-clip: text;
@@ -115,13 +112,13 @@
             margin: 0 auto 35px;
         }
 
-        /* Common Section Styling */
-        section { padding: 90px 20px; }
-        
+        /* Sections */
+        section { padding: 80px 20px; }
+
         .section-title {
             font-size: 2.5rem;
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -131,93 +128,57 @@
             text-align: center;
             color: var(--text-secondary);
             margin-bottom: 50px;
-            font-size: 1.1rem;
         }
 
-        /* Programs Grid  */
-        .programs-grid {
+        /* Cards */
+        .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
 
-        .program-card {
+        .card {
             background: var(--card-bg);
             padding: 40px;
             border-radius: 20px;
-            border: 1px solid rgba(32, 178, 170, 0.15);
+            border: 1px solid rgba(32, 178, 170, 0.1);
             transition: 0.3s;
         }
 
-        .program-card:hover { transform: translateY(-10px); border-color: var(--primary-teal); }
-        
-        .program-card h3 { margin-bottom: 15px; color: var(--primary-teal); }
+        .card:hover { transform: translateY(-5px); border-color: var(--primary-teal); }
 
-        .program-list { list-style: none; margin-top: 15px; }
-        .program-list li { margin-bottom: 10px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
-        .program-list li::before { content: '→'; color: var(--primary-teal); font-weight: bold; }
+        .card h3 { color: var(--primary-teal); margin-bottom: 15px; }
 
-        /* Skill Check Framework [cite: 31] */
-        .framework-section {
+        .list { list-style: none; margin-top: 15px; }
+        .list li { margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+        .list li::before { content: '✓'; color: var(--primary-teal); font-weight: bold; }
+
+        /* Framework */
+        .framework {
             background: #f0fdfa;
             border-radius: 30px;
-            padding: 60px 40px;
+            padding: 50px;
             margin-top: 40px;
+            text-align: center;
         }
 
-        .framework-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 20px;
             margin-top: 30px;
         }
 
-        .step-item {
-            text-align: center;
+        .step {
+            background: white;
             padding: 20px;
-            background: white;
             border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            width: 200px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
-        .step-num {
-            width: 40px;
-            height: 40px;
-            background: var(--primary-teal);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
-            font-weight: bold;
-        }
-
-        /* Expert Network  */
-        .expert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .expert-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid #eee;
-            text-align: center;
-            padding: 30px;
-        }
-
-        .expert-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: #ddd;
-            margin: 0 auto 20px;
-            object-fit: cover;
-        }
-
+        /* Button */
         .cta-button {
             display: inline-block;
             padding: 15px 40px;
@@ -229,10 +190,7 @@
             transition: 0.3s;
         }
 
-        .cta-button:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(32,178,170,0.3); }
-
-        /* Footer */
-        footer { background: #fafafa; padding: 60px 20px; border-top: 1px solid #eee; text-align: center; }
+        footer { text-align: center; padding: 40px; border-top: 1px solid #eee; }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
@@ -244,16 +202,12 @@
 
     <nav class="navbar">
         <div class="container">
-            <a href="#" class="nav-brand">
-                <div style="background: var(--gradient-primary); color: white; padding: 5px 12px; border-radius: 8px; font-weight: 800;">A</div>
-                <span style="font-size: 1.4rem; font-weight: 700; color: #1a1a1a;">Alytiq</span>
-            </a>
+            <a href="#" class="nav-brand">Alytiq</a>
             <ul class="nav-menu">
                 <li><a href="#automation">Ad Automation</a></li>
-                <li><a href="#academy">Alytiq Academy</a></li>
-                <li><a href="#programs">Programs</a></li>
-                <li><a href="#experts">Our Experts</a></li>
-                <li><a href="#contact" class="nav-cta">Partner With Us</a></li>
+                <li><a href="#academy">Academy</a></li>
+                <li><a href="#experts">Experts</a></li>
+                <li><a href="#contact" class="nav-cta">Get Started</a></li>
             </ul>
         </div>
     </nav>
@@ -261,7 +215,7 @@
     <section class="hero">
         <div class="container">
             <h1>Industry-Led Learning & Ad Automation</h1>
-            <p>From AI-powered campaign optimization to real-world skill mastery. We bridge the gap between classroom theory and corporate excellence. [cite: 4, 5]</p>
+            <p>From AI-powered campaign optimization to real-world skill mastery. We bridge the gap between classroom theory and corporate excellence.</p>
             <div style="display: flex; gap: 15px; justify-content: center;">
                 <a href="#automation" class="cta-button">Explore Ad SaaS</a>
                 <a href="#academy" class="cta-button" style="background: #1a1a1a;">Visit Academy</a>
@@ -273,85 +227,63 @@
         <div class="container">
             <h2 class="section-title">AI Ad Automation</h2>
             <p class="section-subtitle">Maximize visibility and optimize ROI across e-commerce platforms</p>
-            <div class="programs-grid">
-                <div class="program-card">
+            <div class="grid">
+                <div class="card">
                     <h3>🚀 Hyperlocal Automation</h3>
                     <p>Launch hyperlocal campaigns in one click with bulk edits and intelligent decision-making agents.</p>
                 </div>
-                <div class="program-card">
-                    <h3>📊 Shelf Analytics</h3>
-                    <p>Real-time tracking of OSA, SOS, and product visibility to drive measurable GMV growth.</p>
+                <div class="card">
+                    <h3>📊 Digital Shelf Analytics</h3>
+                    <p>Real-time tracking of product visibility, SOS, and competitive positioning to drive GMV growth.</p>
                 </div>
-                <div class="program-card">
-                    <h3>🤖 AI Decision Agents</h3>
-                    <p>24/7 autonomous agents managing budget optimization and keyword discovery for FMCG brands.</p>
+                <div class="card">
+                    <h3>🤖 AI Business Agents</h3>
+                    <p>Deploy autonomous agents for 24/7 process optimization and data-backed keyword targeting.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="academy" style="background: #fcfcfc;">
+    <section id="academy" style="background: #fafafa;">
         <div class="container">
             <h2 class="section-title">Alytiq Academy</h2>
-            <p class="section-subtitle">Real Skills. Real Outcomes. Learn from Industry Practitioners. [cite: 5, 25]</p>
+            <p class="section-subtitle">From Classroom to Corporate: Real Skills, Real Outcomes</p>
             
-            <div class="programs-grid" id="programs">
-                <div class="program-card">
+            <div class="grid">
+                <div class="card">
                     <h3>🎓 University Programs</h3>
-                    <ul class="program-list">
-                        <li>Power BI (PL-300 Certification) [cite: 12, 27]</li>
-                        <li>Data Analytics Foundations [cite: 13]</li>
-                        <li>Curriculum Design Support [cite: 21]</li>
-                        <li>AI for Business (Coming Soon) [cite: 14]</li>
+                    <ul class="list">
+                        <li>Power BI (PL-300)</li>
+                        <li>Data Analytics Foundations</li>
+                        <li>Curriculum Design Support</li>
                     </ul>
                 </div>
-
-                <div class="program-card">
+                <div class="card">
                     <h3>🏢 Corporate Training</h3>
-                    <ul class="program-list">
-                        <li>Power BI for Managers [cite: 16]</li>
-                        <li>HR Analytics (Industry Edge) [cite: 17]</li>
-                        <li>Business Storytelling with Data [cite: 17]</li>
-                        <li>Custom Capability Building [cite: 28]</li>
+                    <ul class="list">
+                        <li>Power BI for Managers</li>
+                        <li>HR Analytics (Industry Edge)</li>
+                        <li>Business Storytelling</li>
                     </ul>
                 </div>
-
-                <div class="program-card">
-                    <h3>👤 Career Hub</h3>
-                    <ul class="program-list">
-                        <li>Train-the-Trainer Certification [cite: 20]</li>
-                        <li>Resume & Portfolio Building [cite: 22]</li>
-                        <li>Mock Interviews & Soft Skills [cite: 23]</li>
-                        <li>Job-Ready Simulation Labs [cite: 36]</li>
+                <div class="card">
+                    <h3>👤 Individual Growth</h3>
+                    <ul class="list">
+                        <li>Train-the-Trainer</li>
+                        <li>Resume & Interview Skills</li>
+                        <li>Simulation Labs</li>
                     </ul>
                 </div>
             </div>
 
-            <div class="framework-section">
-                <h3 style="text-align: center; margin-bottom: 10px;">The Skill Check Framework</h3>
-                <p style="text-align: center; color: var(--text-secondary);">How we ensure you become confidently job-ready [cite: 32]</p>
-                
-                <div class="framework-steps">
-                    <div class="step-item">
-                        <div class="step-num">1</div>
-                        <h4>Screening</h4>
-                        <p style="font-size: 0.85rem;">Pre-program capability check [cite: 33]</p>
-                    </div>
-                    <div class="step-item">
-                        <div class="step-num">2</div>
-                        <h4>Modules</h4>
-                        <p style="font-size: 0.85rem;">Continuous assessments & quizzes [cite: 34]</p>
-                    </div>
-                    <div class="step-item">
-                        <div class="step-num">3</div>
-                        <h4>Real-World</h4>
-                        <p style="font-size: 0.85rem;">Case evaluations & simulations [cite: 35]</p>
-                    </div>
-                    <div class="step-item">
-                        <div class="step-num">4</div>
-                        <h4>Ready</h4>
-                        <p style="font-size: 0.85rem;">Final certification readiness [cite: 37]</p>
-                    </div>
+            <div class="framework">
+                <h3>Our Skill Check Framework</h3>
+                <p>Ensuring job-readiness through assessment-driven learning</p>
+                <div class="steps">
+                    <div class="step"><strong>1. Screening</strong><br><small>Pre-program evaluation</small></div>
+                    <div class="step"><strong>2. Assessment</strong><br><small>Module-level quizzes</small></div>
+                    <div class="step"><strong>3. Application</strong><br><small>Real-world case studies</small></div>
+                    <div class="step"><strong>4. Readiness</strong><br><small>Certification testing</small></div>
                 </div>
             </div>
         </div>
@@ -360,60 +292,33 @@
     <section id="experts">
         <div class="container">
             <h2 class="section-title">Learn From The Pros</h2>
-            <p class="section-subtitle">Our mentors don't just teach; they apply these skills in top organizations every day. [cite: 39, 40, 68]</p>
-            
-            <div class="expert-grid">
-                <div class="expert-card">
-                    <div class="expert-img"></div>
-                    <h4>Data & Analytics Lead</h4>
-                    <p style="color: var(--primary-teal); font-weight: 600;">8+ Years Experience [cite: 45]</p>
-                    <p style="font-size: 0.9rem; margin-top: 10px;">Expert in Power BI, SQL, and Real-world Dashboarding. [cite: 46, 50]</p>
+            <p class="section-subtitle">Practitioners who apply these skills every day in the real world</p>
+            <div class="grid">
+                <div class="card" style="text-align: center;">
+                    <div style="width: 80px; height: 80px; background: #ddd; border-radius: 50%; margin: 0 auto 15px;"></div>
+                    <h4>Analytics Experts</h4>
+                    <p>Learn Power BI and Data Science from 8+ year veterans.</p>
                 </div>
-                <div class="expert-card">
-                    <div class="expert-img"></div>
-                    <h4>HR Consultant</h4>
-                    <p style="color: var(--primary-teal); font-weight: 600;">Management Expert [cite: 62]</p>
-                    <p style="font-size: 0.9rem; margin-top: 10px;">Focusing on HR Analytics and Corporate Strategy. [cite: 17, 62]</p>
+                <div class="card" style="text-align: center;">
+                    <div style="width: 80px; height: 80px; background: #ddd; border-radius: 50%; margin: 0 auto 15px;"></div>
+                    <h4>HR Consultants</h4>
+                    <p>Bridging management theory with practical workforce analytics.</p>
                 </div>
-                <div class="expert-card">
-                    <div class="expert-img"></div>
-                    <h4>Tech Specialist</h4>
-                    <p style="color: var(--primary-teal); font-weight: 600;">Full-Stack Guru [cite: 63]</p>
-                    <p style="font-size: 0.9rem; margin-top: 10px;">Bridging the gap between software and business logic. [cite: 63]</p>
+                <div class="card" style="text-align: center;">
+                    <div style="width: 80px; height: 80px; background: #ddd; border-radius: 50%; margin: 0 auto 15px;"></div>
+                    <h4>Tech Specialists</h4>
+                    <p>Industry-first teaching focused on solving modern problems.</p>
                 </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 50px;">
-                <p style="margin-bottom: 20px; font-weight: 600;">Want to learn from industry practitioners? [cite: 71]</p>
-                <a href="#contact" class="cta-button">Join Next Cohort</a>
             </div>
         </div>
     </section>
 
-    <section id="contact" style="background: var(--card-bg);">
+    <footer id="contact">
         <div class="container">
-            <h2 class="section-title">Get Started Today</h2>
-            <p class="section-subtitle">Whether you're a brand looking for growth or a student looking for skills. [cite: 73]</p>
-            
-            <div style="max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-                <form>
-                    <input type="text" placeholder="Name" style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px;">
-                    <input type="email" placeholder="Email" style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px;">
-                    <select style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px;">
-                        <option>I am interested in Ad Automation</option>
-                        <option>I am interested in Academy Programs</option>
-                        <option>Institutional Partnership</option>
-                    </select>
-                    <textarea placeholder="Message" rows="4" style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px;"></textarea>
-                    <button type="submit" class="cta-button" style="width: 100%; border: none; cursor: pointer;">Send Inquiry</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Alytiq. All rights reserved. | Powered by Real Skills & AI Innovation.</p>
+            <h3>Ready to scale your business or career?</h3>
+            <p style="margin: 20px 0;">Contact us at contact@alytiq.com</p>
+            <a href="mailto:contact@alytiq.com" class="cta-button">Partner With Alytiq</a>
+            <p style="margin-top: 40px; color: #999;">&copy; 2026 Alytiq. All rights reserved.</p>
         </div>
     </footer>
 
