@@ -3,324 +3,1233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alytiq - AI Ad Automation & Industry-Led Academy</title>
+    <title>Alytiq | Enterprise Analytics, Training & Talent</title>
     <style>
-        :root {
-            --primary-teal: #20B2AA;
-            --dark-bg: #ffffff;
-            --card-bg: #f8f9fa;
-            --text-primary: #1a1a1a;
-            --text-secondary: #555555;
-            --accent-blue: #4A90E2;
-            --gradient-primary: linear-gradient(135deg, #20B2AA, #4A90E2);
-        }
-
+        /* === GLOBAL STYLES & CORPORATE VARIABLES === */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-color: #1e3a8a; /* Deep Navy */
+            --secondary-color: #2563eb; /* Royal Blue */
+            --accent-color: #0ea5e9; /* Light Blue */
+            --success-color: #10b981; /* Metric Green */
+            --light-bg: #ffffff;
+            --card-bg: #f8fafc;
+            --section-bg: #f1f5f9;
+            --text-color: #0f172a;
+            --text-secondary: #475569;
+            --border-color: #e2e8f0;
+            --transition: all 0.3s ease-in-out;
+            --radius: 8px; /* Sharper corners for corporate feel */
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--dark-bg);
-            color: var(--text-primary);
-            line-height: 1.6;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+            background: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.7;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1250px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
-
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(32, 178, 170, 0.2);
-        }
-
-        .navbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-        }
-
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-            align-items: center;
-        }
-
-        .nav-menu a {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .nav-menu a:hover { color: var(--primary-teal); }
-
-        .nav-cta {
-            padding: 8px 20px;
-            background: var(--gradient-primary);
-            color: white !important;
-            border-radius: 25px;
-        }
-
-        /* Hero */
-        .hero {
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 120px 20px 60px;
-            background: radial-gradient(circle at top, rgba(32, 178, 170, 0.1), transparent 70%);
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            max-width: 800px;
-            margin: 0 auto 35px;
-        }
-
-        /* Sections */
-        section { padding: 80px 20px; }
 
         .section-title {
-            font-size: 2.5rem;
             text-align: center;
-            margin-bottom: 10px;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-color);
         }
 
         .section-subtitle {
             text-align: center;
             color: var(--text-secondary);
-            margin-bottom: 50px;
+            margin-bottom: 60px;
+            font-size: 1.15rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* Cards */
-        .grid {
+        section {
+            padding: 100px 0;
+        }
+
+        section:nth-child(even) {
+            background-color: var(--card-bg);
+        }
+
+        /* === HEADER & NAVIGATION === */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 18px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h2 {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            margin: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* === HERO SECTION === */
+        .hero {
+            margin-top: 65px;
+            padding: 140px 0 80px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 950px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--secondary-color);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 4.2rem;
+            margin-bottom: 24px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            color: var(--text-color);
+        }
+
+        .hero h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 1.35rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 40px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(30, 58, 138, 0.2);
+        }
+
+        .cta-button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(30, 58, 138, 0.3);
+        }
+
+        /* === CORPORATE METRICS BAR === */
+        .metrics-bar {
+            background: var(--primary-color);
+            color: white;
+            padding: 40px 0;
+        }
+
+        .metrics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(32, 178, 170, 0.1);
-            transition: 0.3s;
-        }
-
-        .card:hover { transform: translateY(-5px); border-color: var(--primary-teal); }
-
-        .card h3 { color: var(--primary-teal); margin-bottom: 15px; }
-
-        .list { list-style: none; margin-top: 15px; }
-        .list li { margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
-        .list li::before { content: '✓'; color: var(--primary-teal); font-weight: bold; }
-
-        /* Framework */
-        .framework {
-            background: #f0fdfa;
-            border-radius: 30px;
-            padding: 50px;
-            margin-top: 40px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
             text-align: center;
         }
 
-        .steps {
+        .metric-item h3 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+            color: var(--accent-color);
+        }
+
+        .metric-item p {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        /* === ABOUT / METHODOLOGY === */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .about-content p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .about-list {
+            list-style: none;
+            margin-top: 24px;
+        }
+
+        .about-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+        }
+
+        .about-list li::before {
+            content: "✓";
+            color: var(--success-color);
+            background: rgba(16, 185, 129, 0.1);
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        /* === PORTFOLIO 1: E-COM SERVICES === */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--light-bg);
+            padding: 40px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--section-bg);
+            color: var(--primary-color);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--text-color);
+        }
+
+        .platforms-container {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .platforms-tag {
+            display: inline-block;
+            background: var(--text-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin: 0 10px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* === BRANDS & REVIEWS (LOGOS ADDED) === */
+        .marquee-wrapper {
+            overflow: hidden;
+            padding: 40px 0;
+            background: var(--light-bg);
+            white-space: nowrap;
+            position: relative;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .marquee-wrapper::before, .marquee-wrapper::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 200px;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .marquee-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, var(--light-bg), transparent);
+        }
+
+        .marquee-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, var(--light-bg), transparent);
+        }
+
+        .marquee-content {
+            display: inline-flex;
+            animation: marquee 30s linear infinite;
+            align-items: center;
+        }
+
+        .marquee-item {
+            margin: 0 40px;
+        }
+
+        .marquee-item img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+            filter: grayscale(100%) opacity(60%);
+            transition: var(--transition);
+            border-radius: 4px;
+        }
+
+        .marquee-item img:hover {
+            filter: grayscale(0%) opacity(100%);
+            transform: scale(1.05);
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--light-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            position: relative;
+            perspective: 1000px;
+            height: 380px;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        .testimonial-card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .card-front {
+            background: var(--light-bg);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-back {
+            background: var(--primary-color);
+            color: white;
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-back h4 {
+            color: var(--accent-color);
+        }
+
+        .card-back p {
+            color: #f1f5f9;
+        }
+
+        .testimonial-text {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+            flex-grow: 1;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .author-info {
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+        }
+
+        .author-info h4 { font-size: 1.1rem; color: var(--text-color); font-weight: 700;}
+        .author-info p { font-size: 0.9rem; color: var(--secondary-color); font-weight: 600;}
+        .author-info .company { font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;}
+        
+        .flip-indicator {
+            position: absolute;
+            bottom: 20px;
+            right: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        .card-back .flip-indicator { color: white; }
+
+        /* === PORTFOLIO 2: EDUCATION & TRAINING === */
+        .faculty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .faculty-card {
+            background: var(--light-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .faculty-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        }
+
+        .emoji-avatar {
+            height: 200px;
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            border-bottom: 4px solid var(--secondary-color);
+            position: relative;
+        }
+
+        .emoji-avatar::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .emoji-avatar span {
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+
+        .faculty-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .faculty-info h3 {
+            font-size: 1.3rem;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        .faculty-info .title {
+            color: var(--secondary-color);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .faculty-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* === PORTFOLIO 3: TALENT SOLUTIONS === */
+        .talent-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .roles-box {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .roles-box h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--section-bg);
+            padding-bottom: 10px;
+        }
+
+        .role-tags {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
+            gap: 10px;
         }
 
-        .step {
+        .role-tag {
+            background: var(--section-bg);
+            color: var(--text-color);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .pipeline-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .pipeline-step {
+            display: flex;
+            align-items: center;
             background: white;
             padding: 20px;
-            border-radius: 15px;
-            width: 200px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
         }
 
-        /* Button */
-        .cta-button {
-            display: inline-block;
-            padding: 15px 40px;
-            background: var(--gradient-primary);
+        .pipeline-step:hover {
+            border-color: var(--secondary-color);
+            transform: translateX(10px);
+        }
+
+        .step-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--section-bg);
+            margin-right: 20px;
+            -webkit-text-stroke: 1px var(--primary-color);
+        }
+
+        .step-content h4 {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            margin-bottom: 4px;
+        }
+
+        .step-content p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* === CONTACT SECTION === */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            background: var(--primary-color);
             color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: 0.3s;
+            padding: 60px;
+            border-radius: var(--radius);
+            box-shadow: 0 20px 40px rgba(30, 58, 138, 0.15);
         }
 
-        footer { text-align: center; padding: 40px; border-top: 1px solid #eee; }
+        .contact-info { flex: 1; min-width: 300px; }
+        .contact-form { flex: 1.5; min-width: 300px; background: white; padding: 40px; border-radius: var(--radius); }
+
+        .contact-info h3 { font-size: 2rem; margin-bottom: 20px; color: white;}
+        .contact-info p { margin-bottom: 30px; color: #cbd5e1; font-size: 1.1rem;}
+
+        .contact-details p { margin-bottom: 15px; color: white; display: flex; align-items: center; gap: 10px;}
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+            background: var(--card-bg);
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-group textarea { resize: vertical; height: 120px; }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover { background: #152c6b; }
+
+        /* === FOOTER === */
+        footer {
+            background: #0b1120;
+            color: #94a3b8;
+            padding: 70px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h3 {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .footer-col ul li a:hover { color: white; padding-left: 5px;}
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #1e293b;
+            font-size: 0.9rem;
+        }
+
+        /* === RESPONSIVE UTILITIES === */
+        @media (max-width: 992px) {
+            .about-grid, .talent-grid { grid-template-columns: 1fr; gap: 40px; }
+            .metrics-grid { grid-template-columns: 1fr 1fr; }
+            .hero h1 { font-size: 3.2rem; }
+        }
 
         @media (max-width: 768px) {
+            .nav-links { display: none; } /* Hamburger menu context */
+            .hero { padding: 120px 0 60px; }
             .hero h1 { font-size: 2.5rem; }
-            .nav-menu { display: none; }
+            .contact-container { padding: 30px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px;}
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
+    <!-- Header Navigation -->
+    <header id="header">
         <div class="container">
-            <a href="#" class="nav-brand">Alytiq</a>
-            <ul class="nav-menu">
-                <li><a href="#automation">Ad Automation</a></li>
-                <li><a href="#academy">Academy</a></li>
-                <li><a href="#experts">Experts</a></li>
-                <li><a href="#contact" class="nav-cta">Get Started</a></li>
-            </ul>
+            <nav>
+                <div class="logo">
+                    <h2 onclick="window.scrollTo(0,0)"><img src="data:image/png;base64,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" alt="Alyt IQ Logo" style="height: 40px; width: auto; max-width: 200px; vertical-align: middle; margin-right: 8px;"></h2>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#ecom">E-Commerce</a></li>
+                    <li><a href="#training">Training</a></li>
+                    <li><a href="#talent">Talent Solutions</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-    </nav>
+    </header>
 
-    <section class="hero">
+    <!-- Hero Section -->
+    <section class="hero" id="home">
         <div class="container">
-            <h1>Industry-Led Learning & Ad Automation</h1>
-            <p>From AI-powered campaign optimization to real-world skill mastery. We bridge the gap between classroom theory and corporate excellence.</p>
-            <div style="display: flex; gap: 15px; justify-content: center;">
-                <a href="#automation" class="cta-button">Explore Ad SaaS</a>
-                <a href="#academy" class="cta-button" style="background: #1a1a1a;">Visit Academy</a>
+            <div class="hero-content fade-in">
+                <span class="hero-tag">Enterprise Solutions Hub</span>
+                <h1>Driving Corporate Growth Through <span>Analytics, Education & Talent.</span></h1>
+                <p>Alytiq partners with leading enterprises to scale E-commerce operations, upskill corporate workforces, and source top-tier analytical talent.</p>
+                <a href="#ecom" class="cta-button">Explore Our Portfolios</a>
             </div>
         </div>
     </section>
 
-    <section id="automation">
+    <!-- Corporate Metrics Bar -->
+    <div class="metrics-bar">
         <div class="container">
-            <h2 class="section-title">AI Ad Automation</h2>
-            <p class="section-subtitle">Maximize visibility and optimize ROI across e-commerce platforms</p>
-            <div class="grid">
-                <div class="card">
-                    <h3>🚀 Hyperlocal Automation</h3>
-                    <p>Launch hyperlocal campaigns in one click with bulk edits and intelligent decision-making agents.</p>
+            <div class="metrics-grid">
+                <div class="metric-item fade-in">
+                    <h3>50+</h3>
+                    <p>Enterprise Partners</p>
                 </div>
-                <div class="card">
-                    <h3>📊 Digital Shelf Analytics</h3>
-                    <p>Real-time tracking of product visibility, SOS, and competitive positioning to drive GMV growth.</p>
+                <div class="metric-item fade-in">
+                    <h3>210%</h3>
+                    <p>Avg. E-Com Growth</p>
                 </div>
-                <div class="card">
-                    <h3>🤖 AI Business Agents</h3>
-                    <p>Deploy autonomous agents for 24/7 process optimization and data-backed keyword targeting.</p>
+                <div class="metric-item fade-in">
+                    <h3>5,000+</h3>
+                    <p>Professionals Trained</p>
+                </div>
+                <div class="metric-item fade-in">
+                    <h3>98%</h3>
+                    <p>Placement Success</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About / Methodology -->
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content fade-in">
+                    <h2>Our Methodology: Data-Driven Excellence</h2>
+                    <p>At Alytiq, we believe that sustainable enterprise growth requires a three-pronged approach: optimizing current market channels, empowering teams with cutting-edge knowledge, and continuously injecting high-caliber talent into the corporate pipeline.</p>
+                    <ul class="about-list">
+                        <li>Precision E-Commerce & Quick-Com Analytics</li>
+                        <li>Industry-Standard Corporate Training Curriculums</li>
+                        <li>Rigorous Talent Vetting & Placement Processes</li>
+                    </ul>
+                </div>
+                <div class="about-image fade-in" style="background: var(--primary-color); border-radius: var(--radius); height: 100%; min-height: 300px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(30, 58, 138, 0.2);">
+                    <div style="font-size: 8rem; text-align: center;">📈💼</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="academy" style="background: #fafafa;">
+    <!-- Portfolio 1: E-Commerce & Quick Commerce -->
+    <section id="ecom" style="background: var(--section-bg);">
         <div class="container">
-            <h2 class="section-title">Alytiq Academy</h2>
-            <p class="section-subtitle">From Classroom to Corporate: Real Skills, Real Outcomes</p>
+            <h2 class="section-title fade-in">E-Commerce & Quick-Com Intelligence</h2>
+            <p class="section-subtitle fade-in">Dominate your digital shelf space. We provide enterprise-grade monitoring, reporting, and sales enhancement strategies.</p>
             
-            <div class="grid">
-                <div class="card">
-                    <h3>🎓 University Programs</h3>
-                    <ul class="list">
-                        <li>Power BI (PL-300)</li>
-                        <li>Data Analytics Foundations</li>
-                        <li>Curriculum Design Support</li>
-                    </ul>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">📊</div>
+                    <h3>Daily Status Dashboards</h3>
+                    <p>Gain absolute visibility. Our proprietary dashboards offer day-by-day metrics on inventory velocity, sales trends, and out-of-stock risks.</p>
                 </div>
-                <div class="card">
-                    <h3>🏢 Corporate Training</h3>
-                    <ul class="list">
-                        <li>Power BI for Managers</li>
-                        <li>HR Analytics (Industry Edge)</li>
-                        <li>Business Storytelling</li>
-                    </ul>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🗺️</div>
+                    <h3>Multi-Zone Tracking</h3>
+                    <p>Optimize your supply chain by monitoring On-Shelf Availability (OSA) across distinct geographic quick-commerce delivery zones.</p>
                 </div>
-                <div class="card">
-                    <h3>👤 Individual Growth</h3>
-                    <ul class="list">
-                        <li>Train-the-Trainer</li>
-                        <li>Resume & Interview Skills</li>
-                        <li>Simulation Labs</li>
-                    </ul>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">📈</div>
+                    <h3>GMV & Conversion Scaling</h3>
+                    <p>Leverage our rich analytics to refine ad spend, increase Share of Search (SOS), and drive exponential Gross Merchandise Value.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Competitor Benchmarking</h3>
+                    <p>Stay ahead of the curve. Real-time intelligence on competitor pricing, promotions, and category positioning across platforms.</p>
                 </div>
             </div>
 
-            <div class="framework">
-                <h3>Our Skill Check Framework</h3>
-                <p>Ensuring job-readiness through assessment-driven learning</p>
-                <div class="steps">
-                    <div class="step"><strong>1. Screening</strong><br><small>Pre-program evaluation</small></div>
-                    <div class="step"><strong>2. Assessment</strong><br><small>Module-level quizzes</small></div>
-                    <div class="step"><strong>3. Application</strong><br><small>Real-world case studies</small></div>
-                    <div class="step"><strong>4. Readiness</strong><br><small>Certification testing</small></div>
+            <div class="platforms-container fade-in">
+                <p style="margin-bottom: 15px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase;">Optimizing Operations Across Top Platforms:</p>
+                <span class="platforms-tag">Zepto</span>
+                <span class="platforms-tag">Blinkit</span>
+                <span class="platforms-tag">Amazon</span>
+                <span class="platforms-tag">Instamart</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted Brands & Reviews -->
+    <section id="brands" style="padding-top: 0; padding-bottom: 100px;">
+        <!-- Dynamic Logo Marquee -->
+        <div class="marquee-wrapper fade-in">
+            <div class="marquee-content" id="marquee-track">
+                <!-- Using placeholder images that generate clean text logos -->
+                <div class="marquee-item"><img src="https://placehold.co/200x80/f8fafc/1e3a8a?text=Cornitos&font=Montserrat" alt="Cornitos Logo"></div>
+                <div class="marquee-item"><img src="https://placehold.co/200x80/f8fafc/1e3a8a?text=Yodley&font=Montserrat" alt="Yodley Logo"></div>
+                <div class="marquee-item"><img src="https://placehold.co/200x80/f8fafc/1e3a8a?text=Kazima&font=Montserrat" alt="Kazima Logo"></div>
+                <div class="marquee-item"><img src="https://placehold.co/200x80/f8fafc/1e3a8a?text=Kimayera&font=Montserrat" alt="Kimayera Logo"></div>
+                <div class="marquee-item"><img src="https://placehold.co/200x80/f8fafc/1e3a8a?text=Dirts&font=Montserrat" alt="Dirts Logo"></div>
+                <div class="marquee-item"><img src="https://placehold.co/200x80/f8fafc/1e3a8a?text=Longway&font=Montserrat" alt="Longway Logo"></div>
+                <div class="marquee-item"><img src="https://placehold.co/200x80/f8fafc/1e3a8a?text=Nivea&font=Montserrat" alt="Nivea Logo"></div>
+                <div class="marquee-item"><img src="https://placehold.co/200x80/f8fafc/1e3a8a?text=Mondelez&font=Montserrat" alt="Mondelez Logo"></div>
+            </div>
+        </div>
+
+        <div class="container" style="margin-top: 80px;">
+            <h2 class="section-title fade-in">Corporate Testimonials</h2>
+            <p class="section-subtitle fade-in">See how industry leaders are leveraging Alytiq's solutions.</p>
+
+            <div class="testimonials-grid">
+                <!-- Testimonial 1: Anuj Arora (Cornitos) -->
+                <div class="testimonial-card fade-in">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div style="color: var(--accent-color); font-size: 1.2rem; margin-bottom: 15px;">★★★★★</div>
+                            <p class="testimonial-text">"Alytiq’s daily dashboards completely redefined how we track our Quick-Com inventory. The sales enhancements are incredibly visible week over week, giving us unprecedented control over our supply chain."</p>
+                            <div class="author-info">
+                                <h4>Anuj Arora</h4>
+                                <p>Marketing Head</p>
+                                <span class="company">Cornitos</span>
+                            </div>
+                            <div class="flip-indicator">View ROI Details →</div>
+                        </div>
+                        <div class="card-back">
+                            <h4>Impact Delivered</h4>
+                            <ul style="list-style: none; margin-top: 15px; font-size: 0.95rem; line-height: 1.8;">
+                                <li>✓ 40% Drop in OOS Events</li>
+                                <li>✓ Precision Inventory Tracking</li>
+                                <li>✓ Automated Reporting Pipeline</li>
+                            </ul>
+                            <div class="flip-indicator">← Back</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2: Prateek Bhatia (Dirts) -->
+                <div class="testimonial-card fade-in">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div style="color: var(--accent-color); font-size: 1.2rem; margin-bottom: 15px;">★★★★★</div>
+                            <p class="testimonial-text">"Alytiq transformed our approach to D2C analytics. Their deep insights allowed us to scale our ad efficiency rapidly and hit our GMV targets much faster than we originally anticipated."</p>
+                            <div class="author-info">
+                                <h4>Prateek Bhatia</h4>
+                                <p>CEO</p>
+                                <span class="company">Dirts</span>
+                            </div>
+                            <div class="flip-indicator">View ROI Details →</div>
+                        </div>
+                        <div class="card-back">
+                            <h4>Impact Delivered</h4>
+                            <ul style="list-style: none; margin-top: 15px; font-size: 0.95rem; line-height: 1.8;">
+                                <li>✓ Accelerated GMV Targets</li>
+                                <li>✓ Optimized Ad Spend Budget</li>
+                                <li>✓ Scalable Growth Strategies</li>
+                            </ul>
+                            <div class="flip-indicator">← Back</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3: Akash Tandon (Mondelez) -->
+                <div class="testimonial-card fade-in">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div style="color: var(--accent-color); font-size: 1.2rem; margin-bottom: 15px;">★★★★★</div>
+                            <p class="testimonial-text">"The multi-zone tracking gives us a competitive edge we didn't know we were missing. Alytiq is a highly professional team delivering actionable, enterprise-grade intelligence."</p>
+                            <div class="author-info">
+                                <h4>Akash Tandon</h4>
+                                <p>E-Commerce Strategy</p>
+                                <span class="company">Mondelez</span>
+                            </div>
+                            <div class="flip-indicator">View ROI Details →</div>
+                        </div>
+                        <div class="card-back">
+                            <h4>Impact Delivered</h4>
+                            <ul style="list-style: none; margin-top: 15px; font-size: 0.95rem; line-height: 1.8;">
+                                <li>✓ Enhanced Multi-Zone Visibility</li>
+                                <li>✓ Data-Driven Category Edge</li>
+                                <li>✓ Real-time Market Intelligence</li>
+                            </ul>
+                            <div class="flip-indicator">← Back</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="experts">
+    <!-- Portfolio 2: Education & Training -->
+    <section id="training" style="background: var(--section-bg);">
         <div class="container">
-            <h2 class="section-title">Learn From The Pros</h2>
-            <p class="section-subtitle">Practitioners who apply these skills every day in the real world</p>
-            <div class="grid">
-                <div class="card" style="text-align: center;">
-                    <div style="width: 80px; height: 80px; background: #ddd; border-radius: 50%; margin: 0 auto 15px;"></div>
-                    <h4>Analytics Experts</h4>
-                    <p>Learn Power BI and Data Science from 8+ year veterans.</p>
+            <h2 class="section-title fade-in">Executive Education & Training</h2>
+            <p class="section-subtitle fade-in">Upskill your corporate workforce or prepare for industry integration. Our programs are designed and led by veteran industry experts.</p>
+
+            <div class="faculty-grid">
+                <!-- Faculty 1 -->
+                <div class="faculty-card fade-in">
+                    <div class="emoji-avatar"><span>👨‍💼</span></div>
+                    <div class="faculty-info">
+                        <h3>Ashutosh Shukla</h3>
+                        <p class="title">Director of E-Com Strategy</p>
+                        <p>Over a decade of executive experience driving Quick Commerce marketing, enterprise scaling, and deploying rich analytics strategies for Fortune 500 brands.</p>
+                    </div>
                 </div>
-                <div class="card" style="text-align: center;">
-                    <div style="width: 80px; height: 80px; background: #ddd; border-radius: 50%; margin: 0 auto 15px;"></div>
-                    <h4>HR Consultants</h4>
-                    <p>Bridging management theory with practical workforce analytics.</p>
+                <!-- Faculty 2 -->
+                <div class="faculty-card fade-in">
+                    <div class="emoji-avatar"><span>👨‍💻</span></div>
+                    <div class="faculty-info">
+                        <h3>Ajeet Shukla</h3>
+                        <p class="title">Lead Technology Architect</p>
+                        <p>10+ years of deep technical expertise. Specializes in integrating rapidly evolving AI models into corporate workflows and structuring intensive tech training programs.</p>
+                    </div>
                 </div>
-                <div class="card" style="text-align: center;">
-                    <div style="width: 80px; height: 80px; background: #ddd; border-radius: 50%; margin: 0 auto 15px;"></div>
-                    <h4>Tech Specialists</h4>
-                    <p>Industry-first teaching focused on solving modern problems.</p>
+                <!-- Faculty 3 -->
+                <div class="faculty-card fade-in">
+                    <div class="emoji-avatar"><span>👨‍🏫</span></div>
+                    <div class="faculty-info">
+                        <h3>Adarsh Pandey</h3>
+                        <p class="title">Head of Programs & Counseling</p>
+                        <p>Expert program architect and counselor. Dedicated to aligning student curricula with strict corporate demands and ensuring high-quality program delivery.</p>
+                    </div>
+                </div>
+                <!-- Faculty 4 -->
+                <div class="faculty-card fade-in">
+                    <div class="emoji-avatar"><span>🧠</span></div>
+                    <div class="faculty-info">
+                        <h3>Aamir Quereshi</h3>
+                        <p class="title">Overall Analytics & Insight Specialist</p>
+                        <p>Master of data visualization and trend forecasting. Aamir bridges the gap between raw data sets and actionable, high-level enterprise strategy.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer id="contact">
+    <!-- Portfolio 3: Talent Solutions -->
+    <section id="talent">
         <div class="container">
-            <h3>Ready to scale your business or career?</h3>
-            <p style="margin: 20px 0;">Contact us at contact@alytiq.com</p>
-            <a href="mailto:contact@alytiq.com" class="cta-button">Partner With Alytiq</a>
-            <p style="margin-top: 40px; color: #999;">&copy; 2026 Alytiq. All rights reserved.</p>
+            <h2 class="section-title fade-in">Corporate Talent Solutions</h2>
+            <p class="section-subtitle fade-in">Stop searching. Start scaling. We provide highly skilled, rigorously trained professionals ready to integrate directly into your corporate ecosystem.</p>
+
+            <div class="talent-grid">
+                <div class="pipeline-wrapper fade-in">
+                    <h3 style="margin-bottom: 10px; color: var(--primary-color);">Our End-to-End Pipeline</h3>
+                    <div class="pipeline-step">
+                        <div class="step-number">01</div>
+                        <div class="step-content">
+                            <h4>Academic Foundation</h4>
+                            <p>Rigorous teaching of modern, industry-relevant curriculum.</p>
+                        </div>
+                    </div>
+                    <div class="pipeline-step">
+                        <div class="step-number">02</div>
+                        <div class="step-content">
+                            <h4>Strategic Guidance</h4>
+                            <p>One-on-one executive mentorship for career and culture alignment.</p>
+                        </div>
+                    </div>
+                    <div class="pipeline-step">
+                        <div class="step-number">03</div>
+                        <div class="step-content">
+                            <h4>Practical Simulation</h4>
+                            <p>Hands-on training using live corporate dashboards and AI tools.</p>
+                        </div>
+                    </div>
+                    <div class="pipeline-step">
+                        <div class="step-number">04</div>
+                        <div class="step-content">
+                            <h4>Corporate Integration</h4>
+                            <p>Seamless placement into your company's operational hierarchy.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="roles-box fade-in">
+                    <h3>High-Demand Roles We Fulfill</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px; font-size: 1.05rem;">We specialize in placing candidates trained specifically for the modern digital commerce and analytics landscape.</p>
+                    
+                    <div class="role-tags">
+                        <span class="role-tag">Supply Chain Analysts</span>
+                        <span class="role-tag">E-Commerce Managers</span>
+                        <span class="role-tag">Quick-Com Strategists</span>
+                        <span class="role-tag">Data Visualization Experts</span>
+                        <span class="role-tag">Inventory Forecasters</span>
+                        <span class="role-tag">Digital Marketing Leads</span>
+                        <span class="role-tag">Business Intelligence Analysts</span>
+                    </div>
+
+                    <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color);">
+                        <p style="font-style: italic; color: var(--text-secondary);">"Alytiq alumni reduce our standard onboarding time by over 60%. They arrive knowing the tools we use." — <strong style="color: var(--text-color);">HR Director, Corporate Partner</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="background: var(--section-bg);">
+        <div class="container">
+            <div class="contact-container fade-in">
+                <div class="contact-info">
+                    <h3>Initiate a Partnership</h3>
+                    <p>Whether you require advanced E-commerce analytics, bespoke corporate training, or premium talent acquisition, our team is ready to deliver.</p>
+                    
+                    <div class="contact-details" style="margin-top: 40px;">
+                        <p><span>📧</span> hello@alytiq.com</p>
+                        <p><span>📞</span> +91 (800) 123-4567</p>
+                        <p><span>🏢</span> Enterprise Tech Hub, Sector 62<br>Noida, Uttar Pradesh, India</p>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form onsubmit="event.preventDefault(); alert('Inquiry submitted. An Alytiq representative will contact you shortly.');">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="e.g. Jane Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Corporate Email</label>
+                            <input type="email" placeholder="jane@company.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Primary Area of Interest</label>
+                            <select required>
+                                <option value="" disabled selected>Select an option...</option>
+                                <option value="ecom">E-Commerce & Quick-Com Analytics</option>
+                                <option value="training">Corporate Workforce Training</option>
+                                <option value="talent">Talent Acquisition & Hiring</option>
+                                <option value="other">General Corporate Inquiry</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Message Requirements</label>
+                            <textarea placeholder="Please detail your business needs..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Submit Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col brand">
+                    <div class="logo" style="margin-bottom: 15px;">
+                        <h2><img src="data:image/png;base64,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" alt="Alyt IQ Logo" style="height: 40px; width: auto; max-width: 200px; vertical-align: middle; margin-right: 8px;"></h2>
+                    </div>
+                    <p style="font-size: 0.95rem; margin-top: 15px; line-height: 1.6;">Driving enterprise excellence through precision analytics, professional upskilling, and premium talent deployment.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Portfolios</h3>
+                    <ul>
+                        <li><a href="#ecom">E-Com Analytics</a></li>
+                        <li><a href="#ecom">Quick-Com Intelligence</a></li>
+                        <li><a href="#training">Executive Training</a></li>
+                        <li><a href="#talent">Corporate Staffing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#about">Methodology</a></li>
+                        <li><a href="#brands">Partner Success</a></li>
+                        <li><a href="#training">Leadership</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Legal & Compliance</h3>
+                    <p style="font-size: 0.85rem; margin-bottom: 10px;">For detailed compliance reporting, privacy policies, or terms of corporate engagement, please contact our legal department.</p>
+                    <a href="mailto:legal@alytiq.com" style="color: var(--accent-color); text-decoration: none; font-size: 0.9rem; font-weight: 600;">legal@alytiq.com</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Alytiq Corporate Solutions. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
+    <!-- JavaScript -->
+    <script>
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header Style on Scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 20) {
+                header.style.padding = '12px 0';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
+            } else {
+                header.style.padding = '18px 0';
+                header.style.boxShadow = '0 1px 3px rgba(0,0,0,0.05)';
+            }
+        });
+
+        // Testimonial Flip Cards
+        document.querySelectorAll('.testimonial-card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.toggle('flipped');
+            });
+        });
+
+        // Intersection Observer for Fade-In Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Clone Marquee items for seamless infinite loop
+        const marqueeTrack = document.getElementById('marquee-track');
+        if(marqueeTrack) {
+            const trackHtml = marqueeTrack.innerHTML;
+            marqueeTrack.innerHTML = trackHtml + trackHtml; 
+        }
+    </script>
 </body>
 </html>
