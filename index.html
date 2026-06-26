@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alytiq | Enterprise Analytics, Training & Talent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         /* === GLOBAL STYLES & CORPORATE VARIABLES === */
         * {
@@ -14,29 +18,38 @@
         }
 
         :root {
-            --primary-color: #1e3a8a; /* Deep Navy */
+            --primary-color: #0f172a; /* Slate 900 */
             --secondary-color: #2563eb; /* Royal Blue */
-            --accent-color: #0ea5e9; /* Light Blue */
+            --accent-color: #38bdf8; /* Light Blue */
             --success-color: #10b981; /* Metric Green */
             --light-bg: #ffffff;
-            --card-bg: #f8fafc;
-            --section-bg: #f1f5f9;
-            --text-color: #0f172a;
-            --text-secondary: #475569;
+            --card-bg: #ffffff;
+            --section-bg: #f8fafc; /* Slate 50 */
+            --text-color: #1e293b;
+            --text-secondary: #64748b;
             --border-color: #e2e8f0;
-            --transition: all 0.3s ease-in-out;
-            --radius: 8px; /* Sharper corners for corporate feel */
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --radius: 16px; 
         }
 
         body {
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
             background: var(--light-bg);
             color: var(--text-color);
             line-height: 1.7;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            -webkit-text-size-adjust: 100%; /* Prevents iOS font zooming */
+            animation: pageFadeIn 1.2s ease-out forwards;
+        }
+
+        @keyframes pageFadeIn {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         .container {
@@ -44,46 +57,52 @@
             max-width: 1250px;
             margin: 0 auto;
             padding: 0 24px;
+            position: relative;
         }
 
         .section-title {
             text-align: center;
-            font-size: clamp(2rem, 4vw, 2.5rem); /* Fluid typography for cross-device consistency */
-            margin-bottom: 16px;
+            font-size: clamp(2.2rem, 4vw, 3rem);
+            margin-bottom: 20px;
             font-weight: 800;
-            letter-spacing: -0.5px;
-            color: var(--text-color);
+            letter-spacing: -1px;
+            color: var(--primary-color);
         }
 
         .section-subtitle {
             text-align: center;
             color: var(--text-secondary);
-            margin-bottom: 60px;
-            font-size: clamp(1rem, 2vw, 1.15rem);
+            margin-bottom: 70px;
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.8;
         }
 
         section {
-            padding: 100px 0;
+            padding: 120px 0;
+            position: relative;
         }
 
-        section:nth-child(even) {
-            background-color: var(--card-bg);
-        }
-
-        /* === HEADER & NAVIGATION === */
+        /* === HEADER & NAVIGATION (GLASSMORPHISM) === */
         header {
-            background: rgba(255, 255, 255, 0.98);
-            padding: 18px 0;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 20px 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
             transition: var(--transition);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        header.scrolled {
+            padding: 12px 0;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.9);
         }
 
         nav {
@@ -97,12 +116,25 @@
             display: flex;
             align-items: center;
             margin: 0;
+            transition: var(--transition);
+        }
+
+        .logo h2:hover {
+            transform: scale(1.02);
         }
 
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 40px;
             list-style: none;
+        }
+
+        .nav-links li {
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-links li:hover {
+            transform: translateY(-2px);
         }
 
         .nav-links a {
@@ -111,28 +143,75 @@
             font-weight: 600;
             font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: var(--secondary-color);
             transition: var(--transition);
         }
 
         .nav-links a:hover {
-            color: var(--secondary-color);
+            color: var(--primary-color);
         }
 
-        /* === HERO SECTION === */
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* === HERO SECTION (ANIMATED) === */
         .hero {
-            margin-top: 65px;
-            padding: 140px 0 80px;
-            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            margin-top: 0;
+            min-height: 100vh;
+            padding: 180px 0 100px;
+            background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
             position: relative;
             display: flex;
             align-items: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            animation: float 10s ease-in-out infinite alternate;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) scale(1); }
+            100% { transform: translateY(50px) scale(1.1); }
         }
 
         .hero-content {
             text-align: center;
             width: 100%;
-            max-width: 950px;
+            max-width: 1000px;
             margin: 0 auto;
             position: relative;
             z-index: 2;
@@ -140,204 +219,304 @@
 
         .hero-tag {
             display: inline-block;
-            background: rgba(37, 99, 235, 0.1);
+            background: linear-gradient(120deg, rgba(37, 99, 235, 0.1), rgba(56, 189, 248, 0.1));
+            border: 1px solid rgba(37, 99, 235, 0.2);
             color: var(--secondary-color);
-            padding: 6px 16px;
+            padding: 8px 20px;
             border-radius: 50px;
             font-size: 0.85rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 24px;
+            letter-spacing: 1.5px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.05);
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.2rem); /* Fluid text preventing mobile breaks */
-            margin-bottom: 24px;
+            font-size: clamp(2.8rem, 6vw, 4.8rem);
+            margin-bottom: 30px;
             font-weight: 800;
-            line-height: 1.1;
+            line-height: 1.15;
             letter-spacing: -1.5px;
-            color: var(--text-color);
+            color: var(--primary-color);
         }
 
         .hero h1 span {
-            color: var(--primary-color);
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
         }
 
         .hero p {
             font-size: clamp(1.1rem, 2.5vw, 1.35rem);
             color: var(--text-secondary);
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+            font-weight: 400;
         }
 
         .cta-button {
-            display: inline-block;
-            padding: 16px 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 45px;
             background: var(--primary-color);
             color: white;
             text-decoration: none;
-            border-radius: var(--radius);
+            border-radius: 50px;
             font-weight: 600;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             transition: var(--transition);
             border: none;
             cursor: pointer;
-            box-shadow: 0 4px 6px -1px rgba(30, 58, 138, 0.2);
+            box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: pulse-glow 3s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: var(--transition);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+            transition: 0.7s;
         }
 
         .cta-button:hover {
             background: var(--secondary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(30, 58, 138, 0.3);
+            transform: translateY(-3px) scale(1.02);
+            animation: none;
+            box-shadow: 0 15px 30px -5px rgba(37, 99, 235, 0.5);
         }
 
         /* === CORPORATE METRICS BAR === */
         .metrics-bar {
             background: var(--primary-color);
             color: white;
-            padding: 40px 0;
+            padding: 60px 0;
+            position: relative;
+            z-index: 10;
         }
 
         .metrics-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
             text-align: center;
         }
 
         .metric-item h3 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             font-weight: 800;
             margin-bottom: 5px;
-            color: var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .metric-item p {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            opacity: 0.9;
+            letter-spacing: 2px;
+            color: #94a3b8;
+            font-weight: 600;
         }
 
         /* === ABOUT / METHODOLOGY === */
         .about-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 80px;
             align-items: center;
         }
 
         .about-content h2 {
-            font-size: clamp(1.8rem, 3.5vw, 2.2rem);
-            margin-bottom: 20px;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 25px;
             color: var(--primary-color);
+            line-height: 1.2;
         }
 
         .about-content p {
-            margin-bottom: 16px;
+            margin-bottom: 24px;
             color: var(--text-secondary);
-            font-size: 1.1rem;
+            font-size: 1.15rem;
         }
 
         .about-list {
             list-style: none;
-            margin-top: 24px;
+            margin-top: 30px;
         }
 
         .about-list li {
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             display: flex;
-            align-items: flex-start;
-            gap: 12px;
+            align-items: center;
+            gap: 16px;
             font-weight: 600;
+            font-size: 1.1rem;
+            padding: 12px 20px;
+            background: var(--section-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        
+        .about-list li:hover {
+            transform: translateX(10px) scale(1.02);
+            border-color: var(--accent-color);
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         .about-list li::before {
             content: "✓";
             color: var(--success-color);
-            background: rgba(16, 185, 129, 0.1);
-            min-width: 24px;
-            height: 24px;
+            background: rgba(16, 185, 129, 0.15);
+            min-width: 30px;
+            height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            margin-top: 2px;
+            font-size: 1rem;
         }
 
-        /* === PORTFOLIO 1: E-COM SERVICES === */
+        .about-image {
+            border-radius: var(--radius);
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            inset: -20px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            border-radius: calc(var(--radius) + 5px);
+            z-index: -1;
+            opacity: 0.1;
+            transform: rotate(-3deg);
+            transition: var(--transition);
+        }
+
+        .about-image:hover::before {
+            transform: rotate(0deg);
+            opacity: 0.3;
+        }
+
+        /* === PORTFOLIO 1: E-COM SERVICES (GLOW CARDS) === */
+        #ecom {
+            background: var(--section-bg);
+        }
+
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-            gap: 30px;
-            align-items: stretch;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+            gap: 40px;
         }
 
         .feature-card {
             background: var(--light-bg);
             padding: 40px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
-            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
             display: flex;
             flex-direction: column;
-            height: 100%; 
-            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Glowing Border Effect */
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-color);
-            box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.2);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
         }
 
         .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(14, 165, 233, 0.15) 100%);
-            color: var(--primary-color);
-            border-radius: 12px;
+            width: 70px;
+            height: 70px;
+            background: var(--section-bg);
+            color: var(--secondary-color);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 24px;
-            font-size: 28px;
-            flex-shrink: 0;
+            margin-bottom: 30px;
+            font-size: 32px;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            background: var(--secondary-color);
+            color: white;
+            transform: scale(1.15) rotate(10deg);
         }
 
         .feature-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-            color: var(--text-color);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
         }
 
         .feature-card p {
             color: var(--text-secondary);
             flex-grow: 1; 
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         /* === BRANDS MARQUEE === */
         .marquee-wrapper {
             overflow: hidden;
-            padding: 40px 0;
+            padding: 50px 0;
             background: var(--light-bg);
             white-space: nowrap;
             position: relative;
-            border-bottom: 1px solid var(--border-color);
         }
 
         .marquee-wrapper::before, .marquee-wrapper::after {
             content: "";
             position: absolute;
             top: 0;
-            width: 10%;
-            min-width: 50px;
-            max-width: 200px;
+            width: 15%;
             height: 100%;
             z-index: 2;
             pointer-events: none;
@@ -355,27 +534,31 @@
 
         .marquee-content {
             display: inline-flex;
-            animation: marquee 30s linear infinite;
+            animation: marquee 35s linear infinite;
             align-items: center;
+        }
+
+        .marquee-content:hover {
+            animation-play-state: paused;
         }
 
         .marquee-item {
-            margin: 0 40px;
+            margin: 0 50px;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .marquee-item img {
-            height: 50px;
-            width: auto;
-            max-width: 180px;
-            object-fit: contain;
             transition: var(--transition);
         }
 
-        .marquee-item img:hover {
-            transform: scale(1.05);
+        .marquee-item img {
+            height: 55px;
+            width: auto;
+            max-width: 180px;
+            object-fit: contain;
+        }
+
+        .marquee-item:hover {
+            transform: scale(1.15);
         }
 
         @keyframes marquee {
@@ -383,19 +566,18 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* === TESTIMONIALS === */
+        /* === TESTIMONIALS (3D FLIP) === */
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
-            gap: 30px;
-            align-items: stretch;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+            gap: 40px;
         }
 
         .testimonial-card {
             background: transparent;
             position: relative;
-            perspective: 1000px;
-            min-height: 400px; 
+            perspective: 1500px;
+            min-height: 420px; 
             height: 100%;
             cursor: pointer;
         }
@@ -404,8 +586,8 @@
             position: relative;
             width: 100%;
             height: 100%;
-            min-height: 400px;
-            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            min-height: 420px;
+            transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
             transform-style: preserve-3d;
         }
 
@@ -420,40 +602,43 @@
             width: 100%;
             height: 100%;
             backface-visibility: hidden;
-            border-radius: var(--radius);
+            border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            border: 1px solid var(--border-color);
         }
 
         .card-front {
             background: var(--light-bg);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
             display: flex;
             flex-direction: column;
+            transition: var(--transition);
+        }
+        
+        .testimonial-card:hover .card-front {
+            box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.1);
         }
 
         .card-back {
-            background: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color), #1e3a8a);
             color: white;
             transform: rotateY(180deg);
             display: flex;
             flex-direction: column;
             justify-content: center;
-            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.4);
         }
 
         .card-back h4 {
             color: var(--accent-color);
-        }
-
-        .card-back p {
-            color: #f1f5f9;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
         }
 
         .testimonial-text {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-            margin-bottom: 25px;
+            color: var(--text-color);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
             flex-grow: 1; 
             line-height: 1.8;
             font-style: italic;
@@ -461,166 +646,94 @@
 
         .author-info {
             border-top: 1px solid var(--border-color);
-            padding-top: 15px;
+            padding-top: 20px;
             margin-top: auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .author-details {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .brand-logo-container {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-        }
-
+        .author-details h4 { font-size: 1.15rem; color: var(--primary-color); font-weight: 700;}
+        .author-details p { font-size: 0.9rem; color: var(--secondary-color); font-weight: 600;}
+        
         .brand-logo-container img {
-            height: 22px;
+            height: 25px;
             width: auto;
             max-width: 110px;
             object-fit: contain;
+            opacity: 0.9;
         }
 
-        .author-info h4 { font-size: 1.1rem; color: var(--text-color); font-weight: 700;}
-        .author-info p { font-size: 0.9rem; color: var(--secondary-color); font-weight: 600;}
-        
         .flip-indicator {
             position: absolute;
-            bottom: 20px;
-            right: 25px;
+            bottom: 25px;
+            right: 30px;
             font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--secondary-color);
-        }
-        .card-back .flip-indicator { color: white; }
-
-        /* === PORTFOLIO 2: EDUCATION & TRAINING === */
-        .faculty-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-            gap: 30px;
-            align-items: stretch;
-        }
-
-        .faculty-card {
-            background: var(--light-bg);
-            border-radius: var(--radius);
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            width: 100%;
-        }
-
-        .faculty-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-        }
-
-        .faculty-avatar {
-            height: 280px;
-            width: 100%;
-            flex-shrink: 0;
-            border-bottom: 4px solid var(--secondary-color);
-            background-color: var(--section-bg);
-            overflow: hidden;
-            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             display: flex;
             align-items: center;
-            justify-content: center;
+            gap: 5px;
+            transition: var(--transition);
         }
-
-        .faculty-avatar img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top; 
-            transition: transform 0.5s ease;
+        
+        .testimonial-card:hover .flip-indicator span {
+            transform: translateX(5px);
         }
-
-        .faculty-card:hover .faculty-avatar img {
-            transform: scale(1.05); 
-        }
-
-        .faculty-info {
-            padding: 25px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1; 
-        }
-
-        .faculty-info h3 {
-            font-size: 1.3rem;
-            color: var(--text-color);
-            margin-bottom: 5px;
-        }
-
-        .faculty-info .title {
-            color: var(--secondary-color);
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 12px;
-        }
-
-        .faculty-info p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.6;
-            flex-grow: 1; 
+        .card-back .flip-indicator { color: rgba(255,255,255,0.7); }
+        .testimonial-card.flipped:hover .card-back .flip-indicator span {
+            transform: translateX(-5px);
         }
 
         /* === PORTFOLIO 3: TALENT SOLUTIONS === */
         .talent-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: start;
+            gap: 60px;
+            align-items: center;
         }
 
         .roles-box {
-            background: white;
-            padding: clamp(20px, 4vw, 40px);
-            border-radius: var(--radius);
+            background: linear-gradient(135deg, #ffffff, #f8fafc);
+            padding: clamp(30px, 4vw, 50px);
+            border-radius: 24px;
             border: 1px solid var(--border-color);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05);
             height: 100%;
         }
 
         .roles-box h3 {
-            font-size: 1.4rem;
-            margin-bottom: 20px;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
             color: var(--primary-color);
-            border-bottom: 2px solid var(--section-bg);
-            padding-bottom: 10px;
         }
 
         .role-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
+            margin-top: 25px;
         }
 
         .role-tag {
-            background: var(--section-bg);
-            color: var(--text-color);
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-size: 0.9rem;
+            background: white;
+            color: var(--primary-color);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.95rem;
             font-weight: 600;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            transition: var(--transition);
+        }
+        
+        .role-tag:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            transform: translateY(-4px) scale(1.05);
         }
 
         .pipeline-wrapper {
@@ -633,78 +746,99 @@
             display: flex;
             align-items: center;
             background: white;
-            padding: 20px;
-            border-radius: var(--radius);
+            padding: 25px;
+            border-radius: 16px;
             border: 1px solid var(--border-color);
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
         }
 
         .pipeline-step:hover {
             border-color: var(--secondary-color);
-            transform: translateX(10px);
+            background: linear-gradient(to right, #ffffff, #eff6ff);
+            transform: translateX(15px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.1);
         }
 
         .step-number {
-            font-size: 2rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 2.5rem;
             font-weight: 800;
-            color: var(--section-bg);
-            margin-right: 20px;
+            color: transparent;
+            margin-right: 25px;
             flex-shrink: 0;
-            -webkit-text-stroke: 1px var(--primary-color);
+            -webkit-text-stroke: 1.5px var(--border-color);
+            transition: var(--transition);
+        }
+
+        .pipeline-step:hover .step-number {
+            -webkit-text-stroke: 1.5px var(--secondary-color);
+            transform: scale(1.1);
         }
 
         .step-content h4 {
-            font-size: 1.1rem;
-            color: var(--text-color);
-            margin-bottom: 4px;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
         }
 
         .step-content p {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-secondary);
         }
 
         /* === CONTACT SECTION === */
+        #contact {
+            background: var(--section-bg);
+        }
+        
         .contact-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 50px;
             background: var(--primary-color);
-            color: white;
-            padding: clamp(30px, 5vw, 60px);
-            border-radius: var(--radius);
-            box-shadow: 0 20px 40px rgba(30, 58, 138, 0.15);
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.2);
+            overflow: hidden;
         }
 
-        .contact-info { flex: 1; min-width: min(100%, 300px); }
-        .contact-form { flex: 1.5; min-width: min(100%, 300px); background: white; padding: clamp(20px, 4vw, 40px); border-radius: var(--radius); }
-
-        .contact-info h3 { font-size: clamp(1.8rem, 3vw, 2rem); margin-bottom: 20px; color: white;}
-        .contact-info p { margin-bottom: 30px; color: #cbd5e1; font-size: 1.1rem;}
-
-        .contact-details p { margin-bottom: 15px; color: white; display: flex; align-items: flex-start; gap: 10px;}
-        .contact-details span { flex-shrink: 0; margin-top: 3px; }
-
-        .form-group {
-            margin-bottom: 20px;
+        .contact-info { 
+            flex: 1; 
+            min-width: min(100%, 350px); 
+            padding: clamp(40px, 5vw, 60px);
+            background: url('data:image/svg+xml;utf8,<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)" /></svg>');
+            position: relative;
         }
+        
+        .contact-form { 
+            flex: 1.5; 
+            min-width: min(100%, 400px); 
+            background: white; 
+            padding: clamp(40px, 5vw, 60px); 
+        }
+
+        .contact-info h3 { font-size: clamp(2rem, 3vw, 2.5rem); margin-bottom: 20px; color: white;}
+        .contact-info p { margin-bottom: 40px; color: #94a3b8; font-size: 1.1rem; line-height: 1.8;}
+
+        .contact-details p { margin-bottom: 20px; color: white; display: flex; align-items: flex-start; gap: 15px; font-size: 1.05rem;}
+
+        .form-group { margin-bottom: 25px; }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: 600;
-            color: var(--text-color);
-            font-size: 0.9rem;
+            color: var(--primary-color);
+            font-size: 0.95rem;
         }
 
         .form-group input, .form-group textarea, .form-group select {
             width: 100%;
-            padding: 14px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
+            padding: 16px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 10px;
             font-family: inherit;
             font-size: 1rem;
-            background: var(--card-bg);
+            background: var(--section-bg);
             transition: var(--transition);
         }
 
@@ -712,62 +846,65 @@
             outline: none;
             border-color: var(--secondary-color);
             background: white;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
         }
 
-        .form-group textarea { resize: vertical; min-height: 120px; }
+        .form-group textarea { resize: vertical; min-height: 140px; }
 
         .submit-btn {
             width: 100%;
-            padding: 16px;
+            padding: 18px;
             background: var(--primary-color);
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 10px;
             font-size: 1.1rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: var(--transition);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .submit-btn:hover { background: #152c6b; }
+        .submit-btn:hover { 
+            background: var(--secondary-color); 
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+        }
 
         /* === FOOTER === */
         footer {
-            background: #0b1120;
+            background: #020617; /* Slate 950 */
             color: #94a3b8;
-            padding: 70px 0 30px;
+            padding: 80px 0 30px;
+            border-top: 1px solid #1e293b;
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
+            gap: 50px;
+            margin-bottom: 60px;
         }
 
-        .footer-col.brand {
-            grid-column: span 2; 
-        }
+        .footer-col.brand { grid-column: span 2; }
 
         .footer-col h3 {
             color: white;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 1.15rem;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
         }
 
         .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li { margin-bottom: 15px; }
         .footer-col ul li a {
             color: #94a3b8;
             text-decoration: none;
             transition: var(--transition);
+            font-size: 0.95rem;
         }
-        .footer-col ul li a:hover { color: white; padding-left: 5px;}
+        .footer-col ul li a:hover { color: var(--accent-color); padding-left: 8px;}
 
         .footer-bottom {
             text-align: center;
@@ -776,37 +913,31 @@
             font-size: 0.9rem;
         }
 
-        /* === RESPONSIVE CROSS-PLATFORM BREAKPOINTS === */
-        
+        /* === RESPONSIVE === */
         @media (max-width: 1024px) {
             .footer-col.brand { grid-column: span 1; }
-        }
-
-        @media (max-width: 992px) {
-            .about-grid, .talent-grid { grid-template-columns: 1fr; gap: 40px; }
+            .about-grid, .talent-grid { grid-template-columns: 1fr; gap: 50px; }
         }
 
         @media (max-width: 768px) {
             .nav-links { display: none; } 
-            .hero { padding: 120px 0 60px; }
+            .hero { padding: 140px 0 80px; }
             .metrics-grid { grid-template-columns: 1fr 1fr; }
-            section { padding: 70px 0; }
+            section { padding: 80px 0; }
+            .contact-container { flex-direction: column; }
         }
 
         @media (max-width: 480px) {
             .metrics-grid { grid-template-columns: 1fr; }
-            .contact-container { padding: 24px; }
-            .contact-form { padding: 24px; }
-            .card-front, .card-back { padding: 30px; }
         }
 
         /* Scroll Animations */
-        .fade-in {
+        .reveal {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .fade-in.visible {
+        .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
@@ -825,7 +956,6 @@
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#ecom">E-Commerce</a></li>
-                    <!-- <li><a href="#training">Training</a></li> -->
                     <li><a href="#talent">Talent Solutions</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -834,35 +964,28 @@
     </header>
 
     <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content fade-in">
-                <span class="hero-tag">Enterprise Solutions Hub</span>
-                <h1>Driving Corporate Growth Through <span>Analytics, Education & Talent.</span></h1>
-                <p>Alytiq partners with leading enterprises to scale E-commerce operations, upskill corporate workforces, and source top-tier analytical talent.</p>
-                <a href="#ecom" class="cta-button">Explore Our Portfolios</a>
+        <div class="container parallax-container">
+            <div class="hero-content reveal">
+                <span class="hero-tag parallax-el" data-speed="2">Enterprise Solutions Hub</span>
+                <h1 class="parallax-el" data-speed="1.5">Driving Corporate Growth Through <span>Analytics, Education & Talent.</span></h1>
+                <p class="parallax-el" data-speed="1">Alytiq partners with leading enterprises to scale E-commerce operations, upskill corporate workforces, and source top-tier analytical talent.</p>
+                <a href="#ecom" class="cta-button parallax-el" data-speed="0.5">Explore Our Portfolios</a>
             </div>
         </div>
     </section>
 
     <div class="metrics-bar">
         <div class="container">
-            <div class="metrics-grid">
-                <div class="metric-item fade-in">
-                    <h3>50+</h3>
+            <div class="metrics-grid reveal">
+                <div class="metric-item">
+                    <h3 class="counter" data-target="30">0+</h3>
                     <p>Enterprise Partners</p>
                 </div>
-                <div class="metric-item fade-in">
-                    <h3>210%</h3>
+                <div class="metric-item">
+                    <h3 class="counter" data-target="110">0%</h3>
                     <p>Avg. E-Com Growth</p>
                 </div>
-                <div class="metric-item fade-in">
-                    <h3>5,000+</h3>
-                    <p>Professionals Trained</p>
-                </div>
-                <div class="metric-item fade-in">
-                    <h3>98%</h3>
-                    <p>Placement Success</p>
-                </div>
+               
             </div>
         </div>
     </div>
@@ -870,8 +993,8 @@
     <section id="about">
         <div class="container">
             <div class="about-grid">
-                <div class="about-content fade-in">
-                    <h2>Our Methodology: Data-Driven Excellence</h2>
+                <div class="about-content reveal">
+                    <h2>Our Methodology:<br>Data-Driven Excellence</h2>
                     <p>At Alytiq, we believe that sustainable enterprise growth requires a three-pronged approach: optimizing current market channels, empowering teams with cutting-edge knowledge, and continuously injecting high-caliber talent into the corporate pipeline.</p>
                     <ul class="about-list">
                         <li>Precision E-Commerce & Quick-Com Analytics</li>
@@ -879,103 +1002,89 @@
                         <li>Rigorous Talent Vetting & Placement Processes</li>
                     </ul>
                 </div>
-                <div class="about-image fade-in" style="border-radius: var(--radius); height: 100%; min-height: 300px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(30, 58, 138, 0.2); overflow: hidden; border: 1px solid var(--border-color);">
-                    <img src="Gemini_Generated_Image_5ehyz55ehyz55ehy.png" alt="Alytiq Category Deep Dive Dashboard" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                <div class="about-image reveal" style="height: 100%; min-height: 350px; display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 40px rgba(15, 23, 42, 0.1); overflow: hidden; border: 1px solid var(--border-color);">
+                    <img src="Gemini_Generated_Image_5ehyz55ehyz55ehy.png" alt="Alytiq Category Deep Dive Dashboard" style="width: 100%; height: 100%; object-fit: cover; display: block; border-radius: var(--radius);">
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="ecom" style="background: var(--section-bg);">
+    <section id="ecom">
         <div class="container">
-            <h2 class="section-title fade-in">E-Commerce & Quick-Com Intelligence</h2>
-            <p class="section-subtitle fade-in">Dominate your digital shelf space. We provide enterprise-grade monitoring, reporting, and sales enhancement strategies.</p>
+            <h2 class="section-title reveal">E-Commerce & Quick-Com Intelligence</h2>
+            <p class="section-subtitle reveal">Dominate your digital shelf space. We provide enterprise-grade monitoring, reporting, and sales enhancement strategies.</p>
             
             <div class="features-grid">
-                <div class="feature-card fade-in">
+                <div class="feature-card reveal">
                     <div class="feature-icon">📊</div>
                     <h3>Daily Status Dashboards</h3>
                     <p>Gain absolute visibility. Our proprietary dashboards offer day-by-day metrics on inventory velocity, sales trends, and out-of-stock risks.</p>
                 </div>
-                <div class="feature-card fade-in">
+                <div class="feature-card reveal" style="transition-delay: 0.1s;">
                     <div class="feature-icon">🗺️</div>
                     <h3>Multi-Zone Tracking</h3>
                     <p>Optimize your supply chain by monitoring On-Shelf Availability (OSA) across distinct geographic quick-commerce delivery zones.</p>
                 </div>
-                <div class="feature-card fade-in">
+                <div class="feature-card reveal" style="transition-delay: 0.2s;">
                     <div class="feature-icon">📈</div>
                     <h3>GMV & Conversion Scaling</h3>
                     <p>Leverage our rich analytics to refine ad spend, increase Share of Search (SOS), and drive exponential Gross Merchandise Value.</p>
                 </div>
-                <div class="feature-card fade-in">
+                <div class="feature-card reveal">
                     <div class="feature-icon">🔍</div>
                     <h3>Competitor Benchmarking</h3>
                     <p>Stay ahead of the curve. Real-time intelligence on competitor pricing, promotions, and category positioning across platforms.</p>
                 </div>
-                <div class="feature-card fade-in">
+                <div class="feature-card reveal" style="transition-delay: 0.1s;">
                     <div class="feature-icon">🎯</div>
                     <h3>Dynamic Pricing & MAP</h3>
-                    <p>Protect your brand value. Monitor Minimum Advertised Price (MAP) violations and track market pricing fluctuations in real-time across the ecosystem.</p>
+                    <p>Protect your brand value. Monitor Minimum Advertised Price (MAP) violations and track market pricing fluctuations in real-time.</p>
                 </div>
-                <div class="feature-card fade-in">
+                <div class="feature-card reveal" style="transition-delay: 0.2s;">
                     <div class="feature-icon">⭐</div>
                     <h3>Sentiment Analytics</h3>
-                    <p>Aggregate and analyze customer reviews using advanced NLP to uncover hidden product defects, UX friction, and emerging consumer trends.</p>
+                    <p>Aggregate and analyze customer reviews using advanced NLP to uncover hidden product defects, UX friction, and emerging trends.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="brands" style="padding-top: 0; padding-bottom: 100px;">
-        <div class="marquee-wrapper fade-in">
+    <section id="brands" style="padding: 0;">
+        <div class="marquee-wrapper reveal">
             <div class="marquee-content" id="marquee-track">
                 <div class="marquee-item"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDAiIGZvbnQtd2VpZ2h0PSI5MDAiIGZvbnQtc3R5bGU9Iml0YWxpYyIgZmlsbD0iIzNCMDA3RCI+emVwdG88L3RleHQ+PC9zdmc+" alt="Zepto Logo"></div>
                 <div class="marquee-item"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDAiIGZvbnQtd2VpZ2h0PSI4MDAiIGZpbGw9IiNGOENCNDYiPmJsaW5rPHRzcGFuIGZpbGw9IiMxRDlFNEUiPml0PC90c3Bhbj48L3RleHQ+PC9zdmc+" alt="Blinkit Logo"></div>
                 <div class="marquee-item"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjx0ZXh0IHg9IjUwJSIgeT0iNDUlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzYiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjMDAwMDAwIj5hbWF6b248L3RleHQ+PHBhdGggZD0iTSA2MCA2MCBRIDEwMCA3MCAxNDAgNTUiIGZpbGw9InRyYW5zcGFyZW50IiBzdHJva2U9IiNGRjk5MDAiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PC9zdmc+" alt="Amazon Logo"></div>
                 <div class="marquee-item"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzIiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiNGQzgwMTkiPmluc3RhbWFydDwvdGV4dD48L3N2Zz4=" alt="Instamart Logo"></div>
-                <div class="marquee-item"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDAiIGZvbnQtd2VpZ2h0PSI5MDAiIGZvbnQtc3R5bGU9Iml0YWxpYyIgZmlsbD0iIzNCMDA3RCI+emVwdG88L3RleHQ+PC9zdmc+" alt="Zepto Logo"></div>
-                <div class="marquee-item"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDAiIGZvbnQtd2VpZ2h0PSI4MDAiIGZpbGw9IiNGOENCNDYiPmJsaW5rPHRzcGFuIGZpbGw9IiMxRDlFNEUiPml0PC90c3Bhbj48L3RleHQ+PC9zdmc+" alt="Blinkit Logo"></div>
-                <div class="marquee-item"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjx0ZXh0IHg9IjUwJSIgeT0iNDUlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzYiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjMDAwMDAwIj5hbWF6b248L3RleHQ+PHBhdGggZD0iTSA2MCA2MCBRIDEwMCA3MCAxNDAgNTUiIGZpbGw9InRyYW5zcGFyZW50IiBzdHJva2U9IiNGRjk5MDAiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PC9zdmc+" alt="Amazon Logo"></div>
-                <div class="marquee-item"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzIiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiNGQzgwMTkiPmluc3RhbWFydDwvdGV4dD48L3N2Zz4=" alt="Instamart Logo"></div>
             </div>
         </div>
 
-            <!-- Brands We Have Helped Section: Added smoothly directly above Corporate Testimonials[cite: 1] -->
-            <div class="container" style="margin-top: 70px; margin-bottom: -10px;">
-                <h3 style="text-align: center; color: var(--text-secondary); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">Brands We Have Helped</h3>
+        <div class="container" style="margin-top: 50px;">
+            <h3 style="text-align: center; color: var(--text-secondary); font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">Brands We Have Helped</h3>
+        </div>
+        
+        <div class="marquee-wrapper reveal" style="padding: 30px 0;">
+            <div class="marquee-content" id="marquee-track-helped">
+                <div class="marquee-item"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iODAiIGZpbGw9IiM1QTExMkUiIHJ4PSI0Ii8+PHBhdGggZD0iTSA5NSAyNSBMIDEwNSA0NSBMIDg1IDQ1IFoiIGZpbGw9IiNGQ0I4MTMiLz48dGV4dCB4PSI1MCUiIHk9IjcwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIyIiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSIjRkNCODEzIiBsZXR0ZXItc3BhY2luZz0iMSI+Q09STklUT1M8L3RleHQ+PC9zdmc+" alt="Cornitos"></div>
+                <div class="marquee-item"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjx0ZXh0IHg9IjcwIiB5PSI1MiUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIzNiIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iIzAwQTRFMCI+WW9kbGV5PC90ZXh0PjxwYXRoIGQ9Ik0gNDAgNTAgQyAzNSA0MCA0NSA0MCA0MCAzMCBDIDM1IDIwIDI1IDMwIDMwIDQwIEMgMzUgNTAgNDUgNTAgNDAgNjAgWiIgZmlsbD0idHJhbnNwYXJlbnQiIHN0cm9rZT0iIzAwQTRFMCIgc3Ryb2tlLXdpZHRoPSI0Ii8+PC9zdmc+" alt="Yodley"></div>
+                <!-- <div class="marquee-item"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iJ1RpbWVzIE5ldyBSb21hbicsIHNlcmlmIiBmb250LXNpemU9IjM4IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzM0NUMxRSI+S2F6aW1hPC90ZXh0PjxwYXRoIGQ9Ik0gMzUgNDUgUSA0MCAzNSA1NSA0NSBMIDU1IDU1IiBmaWxsPSJ0cmFuc3BhcmVudCIgc3Ryb2tlPSIjMDBDNEU0IiBzdHJva2Utd2lkdGg9IjMiLz48L3N2Zz4=" alt="Kazima"></div>
+                <div class="marquee-item"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjx0ZXh0IHg9IjUwJSIgeT0iNDUlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iJ0NvbWljIFNhbnMnLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjM0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzAwMDAwMCI+S2ltYXlhPC90ZXh0Pjx0ZXh0IHg9IjUwJSIgeT0iNzAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTAiIGZpbGw9IiM2NjY2NjYiPktpbiAmIENvc21ldG9sb2d5PC90ZXh0Pjwvc3ZnPg==" alt="Kimaya"></div> -->
+                <!-- <div class="marquee-item"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjx0ZXh0IHg9IjY1JSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzIiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjMkQyRDJEIj5iZWxsZXNhPC90ZXh0PjxjaXJjbGUgY3g9IjQwIiBjeT0iNDAiIHI9IjE4IiBmaWxsPSIjQ0E5ODlBIi8+PHRleHQgeD0iNDAiIHk9IjQwIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQuIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjRkZGRkZGIj5iPC90ZXh0Pjwvc3ZnPg==" alt="Bellesa"></div> -->
+                <div class="marquee-item"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iSW1wYWN0LCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjQ0IiBsZXR0ZXItc3BhY2luZz0iMiIgZmlsbD0iIzMxMzI0QiI+RElSVFM8L3RleHQ+PC9zdmc+" alt="Dirts"></div>
+                <div class="marquee-item"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjx0ZXh0IHg9IjU1JSIgeT0iNDAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjgiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiMwMDAwMDAiPkxPTkdXQVk8L3RleHQ+PHRleHQgeD0iNTUlIiB5PSI2NSUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMCIgZmlsbD0iIzY2NjY2NiI+QlVJTFQgT04gVFJVU1Q8L3RleHQ+PHBhdGggZD0iTSAyNSA0MCBMIDM1IDMwIEwgMzUgNTAgWiIgZmlsbD0iI0ZGMDAwMCIvPjwvc3ZnPg==" alt="Longway"></div>
+                <div class="marquee-item"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iODAiIGZpbGw9IiNERTAwMTUiIHJ4PSI0Ii8+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjRkZDODAwIiByeD0iMiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzIiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiNERTAwMTUiPldBSSBXQUk8L3RleHQ+PC9zdmc+" alt="Wai Wai"></div>
             </div>
-            
-            <div class="marquee-wrapper fade-in" style="border-bottom: 1px solid var(--border-color); margin-top: 25px; padding: 25px 0;">
-                <div class="marquee-content marquee-track-helped" id="marquee-track-helped">
-                    <!-- Cornitos -->
-                    <div class="marquee-item"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iODAiIGZpbGw9IiM1QTExMkUiIHJ4PSI0Ii8+PHBhdGggZD0iTSA5NSAyNSBMIDEwNSA0NSBMIDg1IDQ1IFoiIGZpbGw9IiNGQ0I4MTMiLz48dGV4dCB4PSI1MCUiIHk9IjcwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIyIiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSIjRkNCODEzIiBsZXR0ZXItc3BhY2luZz0iMSI+Q09STklUT1M8L3RleHQ+PC9zdmc+" alt="Cornitos"></div>
-                    <!-- Yodley -->
-                    <div class="marquee-item"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjx0ZXh0IHg9IjcwIiB5PSI1MiUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIzNiIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iIzAwQTRFMCI+WW9kbGV5PC90ZXh0PjxwYXRoIGQ9Ik0gNDAgNTAgQyAzNSA0MCA0NSA0MCA0MCAzMCBDIDM1IDIwIDI1IDMwIDMwIDQwIEMgMzUgNTAgNDUgNTAgNDAgNjAgWiIgZmlsbD0idHJhbnNwYXJlbnQiIHN0cm9rZT0iIzAwQTRFMCIgc3Ryb2tlLXdpZHRoPSI0Ii8+PC9zdmc+" alt="Yodley"></div>
-                    <!-- Kazima -->
-                    <div class="marquee-item"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iJ1RpbWVzIE5ldyBSb21hbicsIHNlcmlmIiBmb250LXNpemU9IjM4IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzM0NUMxRSI+S2F6aW1hPC90ZXh0PjxwYXRoIGQ9Ik0gMzUgNDUgUSA0MCAzNSA1NSA0NSBMIDU1IDU1IiBmaWxsPSJ0cmFuc3BhcmVudCIgc3Ryb2tlPSIjMDBDNEU0IiBzdHJva2Utd2lkdGg9IjMiLz48L3N2Zz4=" alt="Kazima"></div>
-                    <!-- Kimaya -->
-                    <div class="marquee-item"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjx0ZXh0IHg9IjUwJSIgeT0iNDUlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iJ0NvbWljIFNhbnMnLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjM0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzAwMDAwMCI+S2ltYXlhPC90ZXh0Pjx0ZXh0IHg9IjUwJSIgeT0iNzAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTAiIGZpbGw9IiM2NjY2NjYiPktpbiAmIENvc21ldG9sb2d5PC90ZXh0Pjwvc3ZnPg==" alt="Kimaya"></div>
-                    <!-- Bellesa -->
-                    <div class="marquee-item"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjx0ZXh0IHg9IjY1JSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzIiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjMkQyRDJEIj5iZWxsZXNhPC90ZXh0PjxjaXJjbGUgY3g9IjQwIiBjeT0iNDAiIHI9IjE4IiBmaWxsPSIjQ0E5ODlBIi8+PHRleHQgeD0iNDAiIHk9IjQwIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjRkZGRkZGIj5iPC90ZXh0Pjwvc3ZnPg==" alt="Bellesa"></div>
-                    <!-- Dirts -->
-                    <div class="marquee-item"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iSW1wYWN0LCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjQ0IiBsZXR0ZXItc3BhY2luZz0iMiIgZmlsbD0iIzMxMzI0QiI+RElSVFM8L3RleHQ+PC9zdmc+" alt="Dirts"></div>
-                    <!-- Longway -->
-                    <div class="marquee-item"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjx0ZXh0IHg9IjU1JSIgeT0iNDAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjgiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiMwMDAwMDAiPkxPTkdXQVk8L3RleHQ+PHRleHQgeD0iNTUlIiB5PSI2NSUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMCIgZmlsbD0iIzY2NjY2NiI+QlVJTFQgT04gVFJVU1Q8L3RleHQ+PHBhdGggZD0iTSAyNSA0MCBMIDM1IDMwIEwgMzUgNTAgWiIgZmlsbD0iI0ZGMDAwMCIvPjwvc3ZnPg==" alt="Longway"></div>
-                    <!-- Wai Wai -->
-                    <div class="marquee-item"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgODAiPjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iODAiIGZpbGw9IiNERTAwMTUiIHJ4PSI0Ii8+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjRkZDODAwIiByeD0iMiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzIiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiNERTAwMTUiPldBSSBXQUk8L3RleHQ+PC9zdmc+" alt="Wai Wai"></div>
-                </div>
-            </div>
+        </div>
 
-
-        <div class="container" style="margin-top: 80px;">
-            <h2 class="section-title fade-in">Corporate Testimonials</h2>
-            <p class="section-subtitle fade-in">See how industry leaders are leveraging Alytiq's solutions.</p>
+        <div class="container" style="margin-top: 100px; padding-bottom: 80px;">
+            <h2 class="section-title reveal">Corporate Testimonials</h2>
+            <p class="section-subtitle reveal">See how industry leaders are leveraging Alytiq's solutions.</p>
 
             <div class="testimonials-grid">
-                <div class="testimonial-card fade-in">
+                <div class="testimonial-card reveal">
                     <div class="card-inner">
                         <div class="card-front">
-                            <div style="color: var(--accent-color); font-size: 1.2rem; margin-bottom: 15px;">★★★★★</div>
+                            <div style="color: var(--accent-color); font-size: 1.2rem; margin-bottom: 20px;">★★★★★</div>
                             <p class="testimonial-text">"Alytiq’s daily dashboards completely redefined how we track our Quick-Com inventory. The sales enhancements are incredibly visible week over week, giving us unprecedented control over our supply chain."</p>
                             <div class="author-info">
                                 <div class="author-details">
@@ -986,24 +1095,24 @@
                                     <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMzAiPjx0ZXh0IHg9IjEwMCIgeT0iMjIiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iI0UzMTgzNyIgZm9udC1zdHlsZT0iaXRhbGljIiB0ZXh0LWFuY2hvcj0iZW5kIj5Db3JuaXRvczwvdGV4dD48L3N2Zz4=" alt="Cornitos Logo">
                                 </div>
                             </div>
-                            <div class="flip-indicator">View ROI Details →</div>
+                            <div class="flip-indicator">View ROI Details <span>→</span></div>
                         </div>
                         <div class="card-back">
                             <h4>Impact Delivered</h4>
-                            <ul style="list-style: none; margin-top: 15px; font-size: 0.95rem; line-height: 1.8;">
+                            <ul style="list-style: none; margin-top: 15px; font-size: 1.05rem; line-height: 2;">
                                 <li>✓ 40% Drop in OOS Events</li>
                                 <li>✓ Precision Inventory Tracking</li>
                                 <li>✓ Automated Reporting Pipeline</li>
                             </ul>
-                            <div class="flip-indicator">← Back</div>
+                            <div class="flip-indicator"><span>←</span> Back</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="testimonial-card fade-in">
+                <div class="testimonial-card reveal" style="transition-delay: 0.1s;">
                     <div class="card-inner">
                         <div class="card-front">
-                            <div style="color: var(--accent-color); font-size: 1.2rem; margin-bottom: 15px;">★★★★★</div>
+                            <div style="color: var(--accent-color); font-size: 1.2rem; margin-bottom: 20px;">★★★★★</div>
                             <p class="testimonial-text">"Alytiq transformed our approach to D2C analytics. Their deep insights allowed us to scale our ad efficiency rapidly and hit our GMV targets much faster than we originally anticipated."</p>
                             <div class="author-info">
                                 <div class="author-details">
@@ -1014,109 +1123,57 @@
                                     <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMzAiPjx0ZXh0IHg9IjEwMCIgeT0iMjIiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iIzJkMzc0OCIgbGV0dGVyLXNwYWNpbmc9IjEiIHRleHQtYW5jaG9yPSJlbmQiPkRJUlRTPC90ZXh0Pjwvc3ZnPg==" alt="Dirts Logo">
                                 </div>
                             </div>
-                            <div class="flip-indicator">View ROI Details →</div>
+                            <div class="flip-indicator">View ROI Details <span>→</span></div>
                         </div>
                         <div class="card-back">
                             <h4>Impact Delivered</h4>
-                            <ul style="list-style: none; margin-top: 15px; font-size: 0.95rem; line-height: 1.8;">
+                            <ul style="list-style: none; margin-top: 15px; font-size: 1.05rem; line-height: 2;">
                                 <li>✓ Accelerated GMV Targets</li>
                                 <li>✓ Optimized Ad Spend Budget</li>
                                 <li>✓ Scalable Growth Strategies</li>
                             </ul>
-                            <div class="flip-indicator">← Back</div>
+                            <div class="flip-indicator"><span>←</span> Back</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="testimonial-card fade-in">
+                <div class="testimonial-card reveal" style="transition-delay: 0.2s;">
                     <div class="card-inner">
                         <div class="card-front">
-                            <div style="color: var(--accent-color); font-size: 1.2rem; margin-bottom: 15px;">★★★★★</div>
+                            <div style="color: var(--accent-color); font-size: 1.2rem; margin-bottom: 20px;">★★★★★</div>
                             <p class="testimonial-text">"The multi-zone tracking gives us a competitive edge we didn't know we were missing. Alytiq is a highly professional team delivering actionable, enterprise-grade intelligence."</p>
                             <div class="author-info">
                                 <div class="author-details">
                                     <h4>Rishi Singh</h4>
                                     <p>E-Commerce Strategy</p>
                                 </div>
-                                <div class="brand-logo-container">
-                                    <!-- <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMzAiPjx0ZXh0IHg9IjEwMCIgeT0iMjIiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiM0YzI4ODIiIHRleHQtYW5jaG9yPSJlbmQiPk1vbmRlbGV6PC90ZXh0Pjwvc3ZnPg==" alt="Kimaya Logo"> -->
-                                </div>
+                                <div class="brand-logo-container"></div>
                             </div>
-                            <div class="flip-indicator">View ROI Details →</div>
+                            <div class="flip-indicator">View ROI Details <span>→</span></div>
                         </div>
                         <div class="card-back">
                             <h4>Impact Delivered</h4>
-                            <ul style="list-style: none; margin-top: 15px; font-size: 0.95rem; line-height: 1.8;">
+                            <ul style="list-style: none; margin-top: 15px; font-size: 1.05rem; line-height: 2;">
                                 <li>✓ Enhanced Multi-Zone Visibility</li>
                                 <li>✓ Data-Driven Category Edge</li>
                                 <li>✓ Real-time Market Intelligence</li>
                             </ul>
-                            <div class="flip-indicator">← Back</div>
+                            <div class="flip-indicator"><span>←</span> Back</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-<!-- 
-    <section id="training" style="background: var(--section-bg);">
-        <div class="container">
-            <h2 class="section-title fade-in">Executive Education & Training</h2>
-            <p class="section-subtitle fade-in">Upskill your corporate workforce or prepare for industry integration. Our programs are designed and led by veteran industry experts.</p>
-
-            <div class="faculty-grid">
-                <div class="faculty-card fade-in">
-                    <div class="faculty-avatar">
-                         <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iI2UyZThmMCIvPjxjaXJjbGUgY3g9IjIwMCIgY3k9IjE1MCIgcj0iNjAiIGZpbGw9IiM5NGEzYjgiLz48cGF0aCBkPSJNMTAwIDQwMGMwLTgwIDYwLTEyMCAxMDAtMTIwczEwMCA0MCAxMDAgMTIwIiBmaWxsPSIjOTRhM2I4Ii8+PC9zdmc+" alt="Adarsh Pandey">
-                    </div>
-                    <div class="faculty-info">
-                        <h3>Ashutosh Shukla</h3>
-                        <p class="title">Director of E-Com Strategy</p>
-                        <p>Over a decade of executive experience driving Quick Commerce marketing, enterprise scaling, and deploying rich analytics strategies for Fortune 500 brands.</p>
-                    </div>
-                </div>
-                <div class="faculty-card fade-in">
-                    <div class="faculty-avatar">
-                         <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iI2UyZThmMCIvPjxjaXJjbGUgY3g9IjIwMCIgY3k9IjE1MCIgcj0iNjAiIGZpbGw9IiM5NGEzYjgiLz48cGF0aCBkPSJNMTAwIDQwMGMwLTgwIDYwLTEyMCAxMDAtMTIwczEwMCA0MCAxMDAgMTIwIiBmaWxsPSIjOTRhM2I4Ii8+PC9zdmc+" alt="Adarsh Pandey">
-                    </div>
-                    <div class="faculty-info">
-                        <h3>Ajeet Shukla</h3>
-                        <p class="title">Lead Technology Architect</p>
-                        <p>10+ years of deep technical expertise. Specializes in integrating rapidly evolving AI models into corporate workflows and structuring intensive tech training programs.</p>
-                    </div>
-                </div>
-                <div class="faculty-card fade-in">
-                    <div class="faculty-avatar">
-                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iI2UyZThmMCIvPjxjaXJjbGUgY3g9IjIwMCIgY3k9IjE1MCIgcj0iNjAiIGZpbGw9IiM5NGEzYjgiLz48cGF0aCBkPSJNMTAwIDQwMGMwLTgwIDYwLTEyMCAxMDAtMTIwczEwMCA0MCAxMDAgMTIwIiBmaWxsPSIjOTRhM2I4Ii8+PC9zdmc+" alt="Adarsh Pandey">
-                    </div>
-                    <div class="faculty-info">
-                        <h3>Adarsh Pandey</h3>
-                        <p class="title">Head of Programs & Counseling</p>
-                        <p>Expert program architect and counselor. Dedicated to aligning student curricula with strict corporate demands and ensuring high-quality program delivery.</p>
-                    </div>
-                </div>
-                <div class="faculty-card fade-in">
-                    <div class="faculty-avatar">
-                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iI2UyZThmMCIvPjxjaXJjbGUgY3g9IjIwMCIgY3k9IjE1MCIgcj0iNjAiIGZpbGw9IiM5NGEzYjgiLz48cGF0aCBkPSJNMTAwIDQwMGMwLTgwIDYwLTEyMCAxMDAtMTIwczEwMCA0MCAxMDAgMTIwIiBmaWxsPSIjOTRhM2I4Ii8+PC9zdmc+" alt="Aamir Quereshi">
-                    </div>
-                    <div class="faculty-info">
-                        <h3>Aamir Quereshi</h3>
-                        <p class="title">Overall Analytics & Insight Specialist</p>
-                        <p>Master of data visualization and trend forecasting. Aamir bridges the gap between raw data sets and actionable, high-level enterprise strategy.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
 
     <section id="talent">
         <div class="container">
-            <h2 class="section-title fade-in">Corporate Talent Solutions</h2>
-            <p class="section-subtitle fade-in">Stop searching. Start scaling. We provide highly skilled, rigorously trained professionals ready to integrate directly into your corporate ecosystem.</p>
+            <h2 class="section-title reveal">Corporate Talent Solutions</h2>
+            <p class="section-subtitle reveal">Stop searching. Start scaling. We provide highly skilled, rigorously trained professionals ready to integrate directly into your corporate ecosystem.</p>
 
             <div class="talent-grid">
-                <div class="pipeline-wrapper fade-in">
-                    <h3 style="margin-bottom: 10px; color: var(--primary-color);">Our End-to-End Pipeline</h3>
+                <div class="pipeline-wrapper reveal">
+                    <h3 style="margin-bottom: 15px; font-size: 1.6rem; color: var(--primary-color);">Our End-to-End Pipeline</h3>
                     <div class="pipeline-step">
                         <div class="step-number">01</div>
                         <div class="step-content">
@@ -1147,7 +1204,7 @@
                     </div>
                 </div>
 
-                <div class="roles-box fade-in">
+                <div class="roles-box reveal">
                     <h3>High-Demand Roles We Fulfill</h3>
                     <p style="color: var(--text-secondary); margin-bottom: 20px; font-size: 1.05rem;">We specialize in placing candidates trained specifically for the modern digital commerce and analytics landscape.</p>
                     
@@ -1161,22 +1218,22 @@
                         <span class="role-tag">Business Intelligence Analysts</span>
                     </div>
 
-                    <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color);">
-                        <p style="font-style: italic; color: var(--text-secondary);">"Alytiq alumni reduce our standard onboarding time by over 60%. They arrive knowing the tools we use." — <strong style="color: var(--text-color);">HR Director, Corporate Partner</strong></p>
+                    <div style="margin-top: 40px; padding-top: 25px; border-top: 1px solid rgba(0,0,0,0.05);">
+                        <p style="font-style: italic; color: var(--text-secondary); line-height: 1.7; font-size: 1.1rem;">"Alytiq alumni reduce our standard onboarding time by over 60%. They arrive knowing the tools we use." <br><br><strong style="color: var(--primary-color);">— HR Director, Corporate Partner</strong></p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" style="background: var(--section-bg);">
+    <section id="contact">
         <div class="container">
-            <div class="contact-container fade-in">
+            <div class="contact-container reveal">
                 <div class="contact-info">
                     <h3>Initiate a Partnership</h3>
                     <p>Whether you require advanced E-commerce analytics, bespoke corporate training, or premium talent acquisition, our team is ready to deliver.</p>
                     
-                    <div class="contact-details" style="margin-top: 40px;">
+                    <div class="contact-details" style="margin-top: 50px;">
                         <p><span>📧</span> partners@alytiq.com</p>
                         <p><span>📞</span> +91 (870) 703-8087</p>
                         <p><span>🏢</span> Enterprise Tech Hub, Sector 62<br>Noida, Uttar Pradesh, India</p>
@@ -1216,14 +1273,14 @@
 
     <footer>
         <div class="container">
-            <div class="footer-grid">
+            <div class="footer-grid reveal">
                 <div class="footer-col brand">
-                    <div class="logo" style="margin-bottom: 15px;">
+                    <div class="logo" style="margin-bottom: 20px;">
                         <h2>
                             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGcAAAAoCAYAAADjT+RAAAAd10lEQVR4nO17eXSdVbn379n7Hc58kjRp0rlQKCWlBRQRBMwpojIrFxJRUD/AgSso3ydXP5d6OTkuWSiTeGWJDDIqaIIiLhGEQpNKmSqUFloopaVtmjRzznzO+7577+f74yQdoAX8HLhreX//nOQ9e+293/17nv2MB/gf/A/+u4GZrbtGixf+bMfYscxM6XRavNd7+pcHM4vJzwVnby7ymY8+cz8zW0ivsN7rvb0Z/8rS4hQmctoPjC+I1Hu9mX3hX5kctshIiw3R1ANmSjNbbSvY6mKW7+nuAPy3U+V/JpgBbRgA0Lq4SVBNgxQA9NYGEIj43c/H1A2I9QD19PSgF0AbAKRSSAHoBAwRmb/vW/wdwMzEzDT193u4jymbs+iU57bxxx/ouU/u/i5yQ77ylW8NTny9q1g5eXLgO+41zSzQ1fWuNa39XWrlP01zaLcEEv0V0vgPBTMESBgAm4PSGTfkyt8fFO5SGSZstB38dHD06i8D3+pkFpl9SDwzE3V3iwyRnvy//g/A0S+Pjb1/kxc0hgWmjbIenOFEcosca/yj8fiqpUQvdU+OT+9n3im8a3La27vk8PD6vaRo+vTF3N3dod/5DFgCiAJQri3LXqAdAExEwbtd/68E1ZatSf1+hEEhUJAMEgAeGa9+PRtvWBqMTRQEdNiUCPlo9Js3D43/LtMy7emuri7Z0bH7XZl5Ssj0TubDfpzLXXbazsHThljPKEGgogIwA5YkWF4Fy8sG9w2P4OyR4acPdtxbv5tI3ElEBswC+yHoXZPzNiQQgH1qQjrNIpMhc/+Lg4vuf+jZFeOFQvC+S27tPyX9m6Y5MXMTgKvb0mmrN5P5e3tLDOyXlClIIQhG6UAx298aGFloikUdJuU22pY1UA2UY0ujivpzAJ5e39S0SzCniGHmyNXFcqZj2/bLthrYfqUCZq0ZBJeZLQJXtCGCgQRhBMIaAB+rHHvJxV71i8/4pa9+iOj5E1assHqXLXvLGbwjOel0WmQyGXP1rStPXr2u7+iq53kGAoqFmFlntt517f+6z/D+CQKAvu3jeH5jf9NYroBwSM7cNlxGuU7PAAD0vNMO3j2ICI4lp9QG1UAlASgiKhHVHIA9IJgZSmsCIEJgr0xGxAUZTSgmJDkBw9LaZAEAqVTtPJjFJDGJr41P/PbRiv+R0ZExjlqWIpC0bSnnkAgmiO1RozEbrCtMYty2yRISBwVm9PS4XXygUj323/OlJ389MnJue1PTg23MVu+bXPq3JacmIWDmztBZX7rlztUbh5vDjgMDwFcaY3WE3y9f9dTpHzlu+xSJ+5pHss1Ri7ksNKTiANK3Dpzd0PxnAL3TN/zN9qeri2VHB+nbXtpx/B3PvHLrSK5gyLL4hNt7mo5vtH4GIH3FFSusTGYv6QyCigdhtC2IvBtH+y/WFv9JuTF7Z6lkN9bXo5KbyE3XlZsBAJ2dBkTI1Iixvjg09uBjVS/ljY/7cduxq8zWbGPMh0ORwZZIVOdUMOoLPqCeHCGI3DWVYu7pclD/miUbf54t1R9q21VNMvTt8UL3dUNDZ15O9MibbdDbxjmdnZ0SIL7m5udSr72RbVblvOeVssov5ZUJStWxIvie3774eQDc0/P2c+lAk1GamFmwgbDIcgCgrbWVpjy5d+vF7TmemampCcTMVPFNYrjkLxrMl1tH8qXFG0dz0/tGRqLMTDtnxomZqXP3NEO5sTEmNgQAlzbOenRaJddh+eV1DeA+mZtYdZQqnXvu/PnbmZm+l8mYFcZYzCzTo7l7H/e8lJoYUxFLOkXLosOk8C5ome5bti3zxsSqmqc3Wc4z/SaoTCg9dmQ4Nvb5+tiLzFBrip78xUQxVEesloXtylOV4DcvF4tHZABu38Pre1vN2bBhAzMznfq5Wy7N5spwhGUBJIkMJNnS8z3qGyxdzMzXElFlDyO5F3wAbAxgDIgBMgyCYQbQm8koymTeDSe7sI81FABc/8I23wGMUEpLozjsurYtKJgcr275Mhh7XL8EA3BNUBnAeTPmdQPotgEYABq77Ut6xQorBfCfPO8bj2p1Tnl0JIhYtu2T4EatzEfq6za/qvQMrRFlNlaLY4nNlWqkPhSqlpS2PN+36y2afXYiWr694iemE3GuUhWfaWrI/tLIuen+gRudQxYej66uXS+1X3KmvJPHV20/YWwse5qulowdcaUfBAxJsASTUEaP5LwZl37ntvMB3JJKdVpTB/UWeiaJAVPtWLQxf3ztNfeUgw92J88BAGDbVkkpvV8bNqldEeztiAgA/EzWS/68d51AoNhYggNjaHpdvcvM0cl3VQACIvIBQELAlrZkAHeMjJ/3UmA+PZ9E/6ulysjBcYfWW07iqYmJawFsy6RSuhOwfzE49O+bJoomDiE1MxMYZ8dib2xmnknMkUbb4j/7xh2uVvOL4qHks5pmzfDV+CzbMmuqumlpiEofTISK/dUg+rmWxvLd2fzsvnJQsEPhY9KbN3/0OwsWPNbOLLuJ9H7J6e7uhpQCd/5y+UU7B8Y5ZMGoqhYt0+NkpMTIeBGOTSiXFTa8PnIJM99Bb5ejMgwYBmnDNgn09Y9t6O8vLzvxrvvvzk1MBIABbFd+Kn33r++74rzLzBVpgT1sWBez7CAy972y/aTbH3vpnpFcUZMlJAJFB82ol4NVpSwBd2x4FBIkiQS8cgUrttOXPnbzQ58JXFdDOnKhq5YDOB+ALUEQNWcGW/3ghN8o+7Rzw4RBraCLZuClqJy5bWLHXQC2gYj/5HnnvWrEXFKBMlJaHhNmK+XND1leYEhLWKqklVnKaqwasqOxUHjprEJ+GzG72raiTQacZOOekIgVrtHF2K0TeauR2TsjEcbOSEw+OTR8OTMvp0mh26edSKfToru7W+fzevam14fODqoVCMMQJPmgme4fDpnb1CXJYjYByARm52h1yTe+d/dRQC0eevN8jg8QM8gw2DBIM0oFj76QOnxldmQ8srV/YubA4PjMLduGmjduH7pQm2w9Mhmzpw3q7uiGBLjn+dcvXLNlsHnH4NjMLYP55nK+UOdKeKu3DDW/sKW/LggUiAQYAkJrvDY4Hn1662Dz868PzFy9bbR5KJufNznljGQsQdWKFwBA1KihGeWiL4olwxW/qIG8zhZVzA1FMal2T03kThv2FRoYFGgDoxU+GI7onWTNfyMI3D7fz58YcYrTYhG7JOwk+4He5qnp74/Hklll6geqZTFqu67LXF4kuLK66ocitlXeZrSTLZXzw55/PDAwDUSGmWmf5EwZ969cfvc5o+NezJbSKMVUHyE6sMW65dBD5v0oGbZJ+RoWS1P1Bb24cehrBHA3ut86oVOzMzAMaA3WCsJCiIjKhx1Q1xVzHWMBQUhyMKFDsUt+9OjpAJDq7JTAZM6qu0Mr5mkb+8dP1cWycQQCx7LMoobIE6FkclU4WQdJAkwEEIO0BpQCSQtOOApLCkjWsEBTt8VobnyCWfkSAI4IR7YeVR+tGhKDtqCIMJjnB8oKOW4zAIQI2FiqLjjMmOrnmhv54JCr41rrlmg49/BYVrQKQQttoZ7yTHxbvhQ5wqIxZsYix+57vFQNJ7WqfigSfmOwWB5cX/bjx4XDphAYjCu2C4qVo7UVhMPR723KHQkAqZ4euS9yqLcXhpmtjRv7vlQtlyBJMsiSsVDQd/HF9Y91fv2jrzY3uTuNFpJAQgUej46XP3HvnY8vQHe32WfhyjCgDYgZWim0NManAcC5Hz/qvpb6kPA8LS0hRanq49XtoxfaUqA3A1MjqUcCwI2rNn5+R9ZLCAFWgaKEVGJpo/2bJAXPLUrQswsbwusd24VRiqEUMxEOjsr+RTF69vB696UPNlgb4wj+PLmjiqp6YBYSAP5crh7Tl83HFHF50Fe00JVOgyQUYAQAFAxHh7VpqLdkqcmWI5GQW2FIbZQSZzckx1nKElkUfznwI2CMD3pB1UgytrRnT5QqGPQ8qaWcsyTiugdYVskXUrqWxHDVgwZVI64bQSiKsYBbAQCp1Fuvtba2tAQy5tv/+cCZ2bx3KEygjdFwbYk5s+L3HXDABVUhKLtwQfMdkUgMSmsjjdHFigj/duW6L2AfbrXjo+b+GAZpTSbQqE9GmgDg1CMP7Fk4q+4FYYUEaYaplM1Y3vvwHX9ceQSQMV1dXbI3s0wzc2j1+i1fGh0ahSslK0jZIqqlL3744D9ef3bbtS9cfvYxV3zu9K/Vx8PQQWCYWTuRCI5oiv3XXy4/95gV/7v9fY9eclbrXV9u/+bktpggIGs7wxI7eP1whwdfLRRnnVEX3mQZyh3WkMT2Yrk6OX5uGGKu9oPEE4FuWl3yYlEhHEtQ8g/DY7PqQNN9jcQHBPKNjs1ZFdQxhBoOvOqyZKzv4JAzRkqp1w3Xv1qpusw8oYlAQKLetqdNVMv9sCQSUh661/W1J6a05oV1m79RyBdgC4uNgoy7gflYasZdABMzcMFnUj9vrrMCHRgpCaJaKnLfzvEv5Pv7G3t7O/WbYxYyDNYGrGu2p1oNSgIAEQWLDmi+oj4ehgoUOcxmvKTFg70vnQ8At/95pwUwXsgFi1/ePLhQeFVmrRF2QzQjGvrFvEPfP9CWviPkA/Rq36jDWgMMEAjCAAZo9AEi6gQRmSsms9LApHs/6e8NI+JtDkTLcfGw/gt45pNexR0aHS/PIt46NdzWBhByx4vFEkLMCNtWuWT0yEnTp2GUjEfGVIaJELKkr0iG2bbDlmGTE6zJdUMF5sJ0KYMW14lJVkKygWaUy1qVfMMThg0M77p29yanq6tLAhm++941qZ2D+WNM4BsGQ8oQ1dfZT1x44UWvoJYnlB9YMveN6Y3xJwTZZBRYam0m8tx42ZX3twPEqVTn3o4BM8AMZrAgwpatQ9sNALSlre+cv+yR5oS1iZmEMIBf9bB9uNDBzKFHBp9UAPE9f3zmUyN5n0JCKu0HsoE9c8zM2I0AkFocNQDYcSSDCUQCAgwoDdbMALgtnQJqQeguF521AXQtCI35pWlL4hF992gp/KfRQiwZ+OqQZHQ7heJTydktg563oSESnh2DEFXNGFA61OS40bWVSrWvUBkcVn5lJsHKBkHUYR4plyvbAkGhJNiBUpTzg+r6ciXwjR7b5uuQCjTqCFKRtOptO86BQtavrgfw1muto6MbROAHf7/qi2NjBXZsyyilKBEmPuvMJT+JRByORkM6Gg3pSMTlc/8tde20ZJQD34cAU6lU4a07sl9j5lhvb0YvXty9W3tqbjTIGAhmQNcCyXnzYRGRXnxg850hW0JrDam1znr2nG//9P5T0dVlmDm5ftPOc0u5EiQRJAk0O/7T3/3yZ14G0mJxe3stTtI1aRMMQNc8Q2P2CJfeFLwSeFcQ6kTrsg8WA2ugUBDnhp1SczjKJV8tTNoIA0CUyJ/r2vmyJvt4xw4WELOvDI0rjs0W1vhh0Yie5YSjqyt+tNlCPAvYWa3H45YjxjTHB3ytjoq6045NxGSD5AkBojABJyaj2mZjJ6RsCRHhIAtbACC157VWM+Ld5omn+2Zv2TpyMliDiKVgSK2q6Hly7MqTz7ph7UfPuHrdiaf9YN3H/+26tQ8+9NyPjfIgjJHEEGTYjBew6Mprf70MALrXY1J7fICnsgNTCcja0keXa3d++rOfvH16zKrqQFm2kFyqKGzYPn4piLjrhS0XDo4W5kgVaJ9ZJByLjpwRv83TBm1piL0cRGPAWsOYyYXM2xQeDcPoGl/rq+V5/Qb0ybpoMRqLiBLDKOFUS0HAAFABcEjEfn6QLRSqQpzWlAymR1x6uVAaTQqr8mDJn5NTQWmGNiOBtHWjJaKzbdEstco323bZCXz5gogEj41OBIc4oWBhyBGH2bZaY0SkXFF6SJtCPPD8S2a0bAWAzlTK7CJnkii+584nvlosmYQkqRk2SSlQqip6dvXmw577y+alq9f0LXlh7Y4lq5/funTlypdbs+N5klLCMGAJydlCwE+s3PQFQeDhnvUGAHxvUnOYawQxdh3a8DAM2tvlzBli8NB5Mx60nDBgAF31eetA9jjmwpK/rNv86Z0Do+xagsFS1omg/5rLj7kfAPV0du7KLijoyWDXTK63f14AGKMNeFKzylVlfSwoVuuS9cGmQsXLs+GK5zmtoXitkAbgjOmNf6kqj+8eGRGPjxSdjrqYv9LImSWlgnlSv1QCc1NdzF41PBGe48ocC2tmk2X5T+fy8dZpDdXhQq7uk7HQxHNKLwiUih4VC1dFySsfFnZ1STrTornsqmhD81qkWRCRmSrZUm9vRjNzbP3Lb5xXKedZWCQIBG3YMJORRAGx8YkQSEGBBQSWIAUW2hg2gACYLKgqRvP+KT+64Xetvb2Z3TWgXVktnsoW7Lry2tvboQ3jpOMWX92YdDkIjHAF8fBYybnmvtW3/WX9wMHwfIJWiNg2FiSdu4kOK7a1peVeeTYFQGsQA4JqAqGVz+3t7TLcsE6ivUt21tI+ABB2LQtGKQMAp4fNjvlN09SzY/noCfURZ+XQRN1IEGCMdBIA2ru65NGh0F0Lhb/u2KYm0ZaIFErG+GeE7fLtI7lDjoyEA4cp/FzRr/vQtES54utYjFGpGu0vTUbpgeHR5ElhazRvh2blDZLDvvINk/BtMs/4Bv0Vn06OiZsUgHSqRwCTd8uk8ebLL+/+bDbrzRJkDFgJhkEs6opYzBWJhGs3Tos6yYRrx6K2HU+G7UjMserqIjISDokpgy8AXSqxveLZDf9HiBodjutM5tUAGIC0gfaDXcR1d3RoIC3OP3npmgUzGp4laQnSmoUR6Fq+4ei+/vG6sJRQvpYNsqrPOX7evQCQ6unc686K2LoWtDAgAPIqFfhGLPxtd7d+5LLLPHR36O/tTsk31yUS5JtAAcAboYR+oBDE2mLO9ucnivKEZExmA2O9MlGwAaC1tVUSEZ/VUP8fB8Rdaoq63usVj4xRfFpdrHJb//jRyrD8oCu3VRWNJ0n214VsPyxFRFeCocubG157HcJ5uVD0RkplnbAcd1s5sFMRRx8YtoJDixPPXNp6xANpZtG5bJkGJhOfk1pjnfTxKy8rFUtshyTpQHNdAvjEmfMvHhzOvzxn3oyWpoZkbHisUBjN5UsN8UhkfKJUnTWzIZHNIvxoz2t3jIzl4AhbetUS9+80n17z1NrM4cccviNMREQEowFIgA1jWjKe2PNg0+mUICJ13d09N726feyY3HgFTsjGwHDWWJYUkkiztOXsKJ4895Nnvox0elftY/36mhAsqAttI2UMGRYUGLD2eO2wdfp//v7J77QeMLPv8VeGT60zpZ/+4FMnrgIwXsxm2RHCAoC+cmVOWPsoEtuKhDp+WqRqeSa5ZWKiDAAbNmzQ7V0sT22k5emt/dffFoS//lHXHX+j5MUqYNEgJW3Nl0NrCM0t4XChJ9Cx14Zz4VRUAq7jPj48Mf/EkFseVUrOde3iTt+PtkRscdt4MXlSIoqzG+JfoW5wuqlH0GTy2JosE+srf/DwGQPDhUOIjAbbEMKlpiY8d9WVX7lFvUMRWUrglLOvu2h0wjuejW8kgXMlil5z+/LzAPwQkFJAAMwgo4kVYWZz3eyaYNSKbZnvnagApq9/Fl2/W7Hmu9kJeRCYjCuFYGZoZiSjEkceOO2W32tGGyB6JwPITCcYGaaPHIxNybC9uY9pARnFtnTkaD6w73hm+/cjz29Hzhc4ui6wXNta6QWqrKoeIpMpLAvka02IOE7jeFCSmxW2rvdk8pNNdS0A0NrURJkUNJjlVUSXX7RpW/0D7F7Q5uh8PFDwSCQ+1pyobK4qsaFQiU8H/CMjFlZUvETB0xQEGsqYyCmJSGVzyQu3RiPFP2ZLiekEdSLMFYfPn78WB5DJYHeZQvRmNjAR+M9PvfLFQiFQli2VMhzEYjYtOXzmnUqBTj75q257V5dMp9NWe1eXbG/vklOfX/3qj12t0+LwRQtujoVt8rVRgoQpV3TwxkD5QtsWqPhWhQEFoxQbo9iwUtpU92KYGW3pTklE1UPnzbg5GouR1tqwUiDDhknI5jD3dV52wQMAqCez2xEAEbd3dQsiCj4wtzHTWJ8QxYCFZlI2kSrnsv7w8LhXyo1XN2aDM67/1YPzAJTkZEkHADSIDUHlNDaREaIQYG5JaUUStOc6DBiPme46ZP6FFzjq7me1SOy0Q4kPNSZya0pB/o1KVSyOuHCjbmFBXayaiITLygBNDJ6jUXzNC+jAkOttKFWix0adwnQhS00N9R8cqhbv+GGx+I2uN4ZaJsvgZAHd+tobV7bdd++zp1i2hCTbMoaQTOpi+tttv7rhGuDhh//Lf0uBq3vqTNn85CeE72f44d5n142XqtEG2xEQhlGthBdecMn1n//IsgWrb/+FbQnLgWXblh2KIpcvVgGgra2VUqlaibuns1M/f8YZtlVXd8/aTYNfHyjRTGLNDDLRUFjMbwz9nIgqbem0RZm9yxPdHR1TWYl7xT0PH/7wS+aynE+Op3wIIWE5YcQdBzPjPDKQrTQBmHBsF6qSNQAQFogmGpssOTHabCUTTjIZdRwKYLxcBQAWp1K7mkaYmUgbcZUUn79zYOejt41W/u9yO7pkGpvk4nC42uzaVskLZq0vlPmYkMtHSjkcs0Td+xvisV9WAqzKFvi4sO2tLXux1nBIPTIwfGYxHPMfylU+tzSE9psmdnZQZ+d2CwBCTjGxeHH8qh192dEDD5gx37IcK2J7K+vrj8ym02nxdl2KRMSTY8bTP/jVJWvWbTtobDSXBTEnExSpSzrewTMwcNyR026aKFns2o6KhhLSJv8hALjkksXc0dFhAIhUZ4/o/cN9sF+8ZfiUS2/fPjBSnAmw0TqQMSpVTz52wd23A0gBpnc/e0HNG/vm71etu/0PL279zESleFSl6lMiHis0hd3Hbjjj0AdpxkHDV17ELb7nMzxlCEDSV/cs9nKvHBGzIy0TxcScsqouLvtZu855CQDaAfOmdfgDK1ZYHS0tv2Tm7pt27PzUw/nyORukOH6rsBqGDMFyIjQiiETIml4sllV2YHT7+1zrlQcZH19X0cGCkOOvL/tOIRLyN47mxCfqQ1vWhus+8Pr2LWchk/nRPmv2e3SqvG1Xzd5gwjtFFvvBa319sxfPn7MjmIzw7/zTSxdd//PHbxsZGzOuZbERUhx9kLv8gZ9+82OBvkIA+24k2YX2LonJVq6pHJLZ80WYiYHIcZ2/KkT8wm8fv+pL5/z/dplMVS2BmncVcL7xJztyH9xaqkbyASeK5JcPC0WrR4ai60+1eSDU3Fz8Yd+2a26pOv+xQPtBa4jMRMCgkMuryQ4dObDj6ds+sPQkABULmGp/2kBtba0E1Ix0ezvQ3d39jg2Du0G8r8bDVAqms7OTaTLX1rbreQqZzpQuA3PO/8rP1n74U9etPODA2U9Jx5r30zsf/dLwzlEOh13ytTDNSZtS75//oy7NaG9fTN37KBnthe4OnU6z6EGn6M1Mdve015pJejo7zVQzn9yjnNWa7nLaO9sNenrQAyAFoAcp9KSg367/rZtIMzN19vTIzMgIEyVGATy0372tWGF9Y868b9w6NLTlgVH93WGnbuZOaZDL5rwjguqNt82Z/i0iKjMz7VNz/hloa0tbvb0Z9R8/eCDzwMNrrwgCH+FYFMoQ/GoBjitZGRPYoYTzvrn2r++/5fJzzz6nXf51AvNW7NEQGG+7oivnqFxNc9rSFnr/9ubGXc3sPT3UM/nsklSK1wPcWetyZaRrJXjm8eRVm4unAjp5UVwub2me+3otTq810L8nvzKYPCBVZp536nk3fCufKyEcIb+czxopLQjLsgOfpBOOOAubae2vf3DixXRzWrS2vtsr9l3uwzCM/vs2/U+16O75bMo+7uoxymRMO7MkohyA+wDg2wDQ1SW5vd1Maep79hMQZqZXtm3z57ZE7gkqdWflK7pBKw0DwLJsJOKiePDcZNfVl7Z9h+oPy+6v7epvgTGsjH67zOg/DntehwCAVMpkiPSeV9l7Qs4eh7yTgC8Y5u9895p7l+RzlUM1kZWM0bZzTznguSMOX7bjruv2ahr/u24jEnZsqSjxzkP/MZjqp9vf9+/pj6dqh94hiGgIwBCA5VPfXfUtAGiXzF3m70nMHnOV3z8DF1Is9vojAJCCwb788/cQ75lDsCeYmTq6u8Xw+t2eXgow++u9/lfB/wPSQ6fd+nWDZgAAAABJRU5ErkJggg==" alt="Alyt IQ Logo" style="height: 40px; width: auto; max-width: 200px; vertical-align: middle; margin-right: 8px;">
                         </h2>
                     </div>
-                    <p style="font-size: 0.95rem; margin-top: 15px; line-height: 1.6;">Driving enterprise excellence through precision analytics, professional upskilling, and premium talent deployment.</p>
+                    <p style="font-size: 0.95rem; margin-top: 15px; line-height: 1.8;">Driving enterprise excellence through precision analytics, professional upskilling, and premium talent deployment.</p>
                 </div>
                 
                 <div class="footer-col">
@@ -1231,7 +1288,6 @@
                     <ul>
                         <li><a href="#ecom">E-Com Analytics</a></li>
                         <li><a href="#ecom">Quick-Com Intelligence</a></li>
-                        <li><a href="#training">Executive Training</a></li>
                         <li><a href="#talent">Corporate Staffing</a></li>
                     </ul>
                 </div>
@@ -1241,15 +1297,14 @@
                     <ul>
                         <li><a href="#about">Methodology</a></li>
                         <li><a href="#brands">Partner Success</a></li>
-                        <li><a href="#training">Leadership</a></li>
                         <li><a href="#contact">Contact Us</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-col">
                     <h3>Legal & Compliance</h3>
-                    <p style="font-size: 0.85rem; margin-bottom: 10px;">For detailed compliance reporting, privacy policies, or terms of corporate engagement, please contact our legal department.</p>
-                    <a href="mailto:legal@alytiq.com" style="color: var(--accent-color); text-decoration: none; font-size: 0.9rem; font-weight: 600;">legal@alytiq.com</a>
+                    <p style="font-size: 0.9rem; margin-bottom: 15px; line-height: 1.6;">For detailed compliance reporting, privacy policies, or terms of corporate engagement, please contact our legal department.</p>
+                    <a href="mailto:legal@alytiq.com" style="color: var(--accent-color); text-decoration: none; font-size: 1rem; font-weight: 600;">legal@alytiq.com</a>
                 </div>
             </div>
             
@@ -1260,6 +1315,16 @@
     </footer>
 
     <script>
+        // Interactive Hero Mouse Parallax
+        document.addEventListener("mousemove", (e) => {
+            document.querySelectorAll(".parallax-el").forEach((el) => {
+                const speed = el.getAttribute("data-speed");
+                const x = (window.innerWidth - e.pageX * speed) / 100;
+                const y = (window.innerHeight - e.pageY * speed) / 100;
+                el.style.transform = `translateX(${x}px) translateY(${y}px)`;
+            });
+        });
+
         // Smooth Scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1274,15 +1339,13 @@
             });
         });
 
-        // Header Style on Scroll
+        // Glassmorphism Header on Scroll
         window.addEventListener('scroll', () => {
             const header = document.getElementById('header');
             if (window.scrollY > 20) {
-                header.style.padding = '12px 0';
-                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
+                header.classList.add('scrolled');
             } else {
-                header.style.padding = '18px 0';
-                header.style.boxShadow = '0 1px 3px rgba(0,0,0,0.05)';
+                header.classList.remove('scrolled');
             }
         });
 
@@ -1293,7 +1356,7 @@
             });
         });
 
-        // Intersection Observer for Fade-In Animations
+        // Advanced Intersection Observer for Fade-ins & Counters
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1302,22 +1365,52 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
+                    // Handle standard reveals
+                    if(entry.target.classList.contains('reveal')) {
+                        entry.target.classList.add('active');
+                        
+                        // Handle counter animation inside revealed elements
+                        const counters = entry.target.querySelectorAll('.counter');
+                        counters.forEach(counter => {
+                            if(!counter.classList.contains('counted')) {
+                                counter.classList.add('counted');
+                                const target = +counter.getAttribute('data-target');
+                                const suffix = counter.innerText.replace(/[0-9]/g, '');
+                                const duration = 1500; // ms
+                                const increment = target / (duration / 16); // 60fps
+                                let current = 0;
+                                
+                                const updateCounter = () => {
+                                    current += increment;
+                                    if(current < target) {
+                                        counter.innerText = Math.ceil(current).toLocaleString() + suffix;
+                                        requestAnimationFrame(updateCounter);
+                                    } else {
+                                        counter.innerText = target.toLocaleString() + suffix;
+                                    }
+                                };
+                                updateCounter();
+                            }
+                        });
+                        
+                        observer.unobserve(entry.target);
+                    }
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.fade-in').forEach(el => {
+        document.querySelectorAll('.reveal').forEach(el => {
             observer.observe(el);
         });
 
         // Clone Marquee items for seamless infinite loop
-        const marqueeTrack = document.getElementById('marquee-track');
-        if(marqueeTrack) {
-            const trackHtml = marqueeTrack.innerHTML;
-            marqueeTrack.innerHTML = trackHtml + trackHtml; 
-        }
+        const marquees = ['marquee-track', 'marquee-track-helped'];
+        marquees.forEach(id => {
+            const track = document.getElementById(id);
+            if(track) {
+                track.innerHTML += track.innerHTML; 
+            }
+        });
     </script>
 </body>
 </html>
